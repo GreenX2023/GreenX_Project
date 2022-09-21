@@ -1,0 +1,11 @@
+{
+    "server": {
+        "port": 3000
+    },
+    "db": {
+        "link":"mongodb+srv://greenx:greenx@cluster0.rjngeit.mongodb.net/?retryWrites=true&w=majority",
+        "host": "localhost",
+        "port": 27017,
+        "name": "mongodb"
+    }
+}

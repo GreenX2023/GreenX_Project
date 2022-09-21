@@ -31,7 +31,7 @@ const UserSchema= new mongoose.Schema({
         type:String
     },
     products:[{  type:'ObjectId', ref: 'Product' }],
-    wishList:[{  type:'ObjectId', ref: 'Product' }]
+    bookmarks:[{  type:'ObjectId', ref: 'Product' }]
 }
 ,
 { timestamps: true }

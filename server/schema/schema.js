@@ -10,7 +10,7 @@ const Schema=buildSchema(`
         Bio:String
         address:String
         products:[product]
-        wishList:[product]
+        bookmarks:[product]
     }
 
     type product{
@@ -48,7 +48,7 @@ const Schema=buildSchema(`
        getProductById(productID:String):[product]
        getProductByName(productName:String):[product]
        getSellerProducts(sellerID:String):[product]
-       getWishListForUser(sellerID:String):[product]
+       getBookmarksForUser(sellerID:String):[product]
     }
 
     input createProductInput{
@@ -90,12 +90,10 @@ const Schema=buildSchema(`
     type Mutation{
         createSubCategory(name:String!,categoryID:String):subcategory
         createProduct(input:createProductInput):product
-
         updateProduct(input:updateProductInput,_id:String):product
-        updateWishListAdd(_id:String,productId:String):user
-        updateWishListremove(_id:String,productId:String):user
+        updateBookmarksAdd(_id:String,productId:String):user
+        updateBookmarksremove(_id:String,productId:String):user
         updateProfile(_id:String,input:updateprofile):user
-
         deleteProduct(userID:String,productID:String):deleteproduct
     }
 

@@ -5,19 +5,19 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"nodemon index.js"
+    "start": "nodemon index.js"
   },
   "author": "Austin D'souza , Sarthak Naik",
   "license": "ISC",
   "dependencies": {
-    "comments":"dependencies version: ~ sign before version number is for allowing just patch updates. eg- 1.2.x",
-    "apollo-server-express": "~3.10.2",
-    "body-parser": "~1.20.0",
-    "dotenv": "~16.0.2",
-    "express": "~4.18.1",
-    "express-graphql": "~0.12.0",
-    "graphql": "~16.6.0",
-    "mongoose": "~6.6.0",
-    "nodemon": "~2.0.20"
+    "apollo-server-express": "^3.10.2",
+    "body-parser": "^1.20.0",
+    "config": "^3.3.8",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.6.0",
+    "mongoose": "^6.6.0",
+    "nodemon": "^2.0.20"
   }
 }

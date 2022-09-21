@@ -4,27 +4,13 @@ const CategorySchema=require('../Models/Category.model');
 const ProductSchema=require('../Models/Product.model');
 const SubCategorySchema=require('../Models/Subcategory.model');
 const {ObjectId} = require('mongodb'); 
-
+const BL = require('../../module/businessLogic.js');
 
 const resolver={
-    getAllCategory:async()=>{
-        const result =await CategorySchema.find({}).populate('subCategoryList')
-        if(result){
-            return result
-        }
-        else{
-            console.log('Error in geting category')
-        }
-    },
-    getAllProducts:async()=>{
-        const result=await ProductSchema.find({});
-        if(result){
-            return result;
-        }
-        else{
-            console.log('Error in getting products')
-        }
-    },
+    getAllCategory: BL.getAllCategory,
+
+    getAllProducts:BL.getAllProducts,
+
     getAllSubcategory:async()=>{
         const result=await SubCategorySchema.find({});
         if(result){
@@ -72,23 +58,14 @@ const resolver={
         
     },
 
-    getProductById:async(args)=>{
-        const result=await  ProductSchema.find({_id:args.productID});
-        return result;
-    },
-    getProductByName:async(args)=>{
-        const result=await  ProductSchema.find({name:args.productName});
-        return result;
-    },
-    getSellerProducts:async(args)=>{
-        const user=await UserSchema.find({_id:args.sellerID}).populate('products');
-        return user[0].products
-    },
-    getWishListForUser:async(args)=>{
-        const user=await UserSchema.find({_id:args.sellerID}).populate('wishList');
-        console.log(user)
-        return user[0].wishList;
-    },
+    getProductById:BL.getProductById,
+
+    getProductByName:BL.getProductByName,
+
+    getSellerProducts:BL.getSellerProducts,
+
+    getBookmarksForUser:BL.getBookmarksForUser,
+    
     createSubCategory:async(args)=>{
         var subCategoryDetails =new SubCategorySchema({name:args.name,categoryID:args.categoryID}); 
         await subCategoryDetails.save();
@@ -128,19 +105,19 @@ const resolver={
         } ,{ returnOriginal: false })
         return updateproductdetails
     },
-    updateWishListAdd:async(args)=>{
+    updateBookmarksAdd:async(args)=>{
     
         let wishlistproduct = new ObjectId(`${args.productId}`); 
-        let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$push": { "wishList": wishlistproduct } }, {
+        let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$push": { "bookmarks": wishlistproduct } }, {
             new: true
           });
    
      return doc
 
     },
-    updateWishListremove:async(args)=>{
+    updateBookmarksremove:async(args)=>{
         let wishlistproduct = new ObjectId(`${args.productId}`); 
-        let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$pull": { "wishList": wishlistproduct } }, {
+        let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$pull": { "bookmarks": wishlistproduct } }, {
             new: true
           });  
      return doc

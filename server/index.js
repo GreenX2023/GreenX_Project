@@ -3,7 +3,8 @@ const express=require('express');
 const app=express();
 const mongoose=require('mongoose');
 const {graphqlHTTP}=require('express-graphql');
-
+const config = require('config');
+const dbLink = config.get("db.link");
 
 
 const UserSchema=require('./Models/User.model');
@@ -15,7 +16,7 @@ const SubCategorySchema=require('./Models/Subcategory.model');
 const Schema = require('./schema/schema');
 const resolver = require('./resolver/resolver');
 
-;
+
 require('dotenv').config();
 
 //middlewares
@@ -25,7 +26,7 @@ app.use(bodyParser.json())
 //mongodb+srv://sarthak:sunnaik05@cluster0.llq2n.mongodb.net/greenx?retryWrites=true&w=majority
 // mongodb+srv://greenx:greenx@cluster0.rjngeit.mongodb.net/?retryWrites=true&w=majority
 //mongodb://0.0.0.0:27017/graphqlGreenx
-mongoose.connect("mongodb+srv://greenx:greenx@cluster0.rjngeit.mongodb.net/?retryWrites=true&w=majority",{
+mongoose.connect(dbLink,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
     
