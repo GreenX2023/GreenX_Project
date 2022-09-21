@@ -1,6 +1,6 @@
 {
     "server": {
-        "port": 3000
+        "port": 4000
     },
     "db": {
         "link":"mongodb+srv://greenx:greenx@cluster0.rjngeit.mongodb.net/?retryWrites=true&w=majority",

@@ -5,7 +5,7 @@ const mongoose=require('mongoose');
 const {graphqlHTTP}=require('express-graphql');
 const config = require('config');
 const dbLink = config.get("db.link");
-
+const port = config.get("server.port");
 
 const UserSchema=require('./Models/User.model');
 const CategorySchema=require('./Models/Category.model');
@@ -145,6 +145,6 @@ app.get('/api/getcategory',async(req,res)=>{
 
 
 
-app.listen(4000,()=>{
-    console.log(`server on port 4000`);
+app.listen(port,()=>{
+    console.log(`server on port ${port}`);
 })
