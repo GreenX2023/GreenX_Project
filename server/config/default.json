@@ -7,8 +7,6 @@
         "host": "localhost",
         "port": 27017,
         "name": "mongodb"
-    },
-    "postman":{
-        "JSONlink":"https://www.getpostman.com/collections/39207669a8367f6e0b0f"
     }
+
 }
