@@ -65,7 +65,7 @@ const resolver={
     getSellerProducts:BL.getSellerProducts,
 
     getBookmarksForUser:BL.getBookmarksForUser,
-    
+
     createSubCategory:async(args)=>{
         var subCategoryDetails =new SubCategorySchema({name:args.name,categoryID:args.categoryID}); 
         await subCategoryDetails.save();
@@ -107,14 +107,13 @@ const resolver={
     },
     updateBookmarksAdd:async(args)=>{
     
-        let wishlistproduct = new ObjectId(`${args.productId}`); 
-        let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$push": { "bookmarks": wishlistproduct } }, {
+        let bookmarkproduct = new ObjectId(`${args.productId}`); 
+        let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$push": { "bookmarks": bookmarkproduct } }, {
             new: true
           });
-   
-     return doc
-
+        return doc
     },
+
     updateBookmarksremove:async(args)=>{
         let wishlistproduct = new ObjectId(`${args.productId}`); 
         let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$pull": { "bookmarks": wishlistproduct } }, {

@@ -1,8 +1,14 @@
 const {buildSchema} = require('graphql');
 
 const Schema=buildSchema(`
+
+    enum role{
+        admin
+        user
+    }
+
     type user{
-        Role:String
+        Role:role!
         name:String
         email:String
         password:String
@@ -37,6 +43,7 @@ const Schema=buildSchema(`
         name:String
         subCategoryList:[subcategory]
     }
+
 
     type Query{
        getAllCategory:[category]
@@ -102,3 +109,42 @@ const Schema=buildSchema(`
 `);
 
 module.exports=Schema;
+
+
+// type category{
+//     _id:String
+//     name:String
+//     subCategoryList:[category]
+//     productList:[product]
+// } 
+// type product{
+//     _id:String
+//     name:String
+//     price:Int
+//     description:String
+//     quantity:String
+//     images:String
+//     location:String
+//     categoryID:String
+//     sellerID:String   
+// }
+// input createProductInput{
+//     categoryID:String!
+//     sellerID:String!
+//     name:String!
+//     price:Int!
+//     description:String
+//     quantity:String
+//     images:String!
+//     location:String!
+// }
+// input updateProductInput{     
+//     categoryID:String
+//     sellerID:String
+//     name:String
+//     price:Int
+//     description:String
+//     quantity:String!
+//     images:String
+//     location:String
+// }

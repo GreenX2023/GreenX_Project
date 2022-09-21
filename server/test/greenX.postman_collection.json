@@ -1,0 +1,280 @@
+{
+	"info": {
+		"_postman_id": "78163570-5474-433a-afc3-d7922d552368",
+		"name": "greenX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\r\n  createProduct(input:{\r\n    subcategoryID:\"6326015b09c3f8e88dfff105\",\r\n    sellerID:\"63260fd1c2bf597bdbf5a13b\",\r\n    name:\"product4\",\r\n    price:1234,\r\n    quantity:\"2 gram\"\r\n    images:\"ndskdn\",\r\n    location:\"asdasdads\"\r\n  }){\r\n    name\r\n    _id\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Subcategory",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\r\n  createSubCategory(name:\"subcat new 2\",categoryID:\"632602bdf87ba630a7a67879\"){\r\n    _id\r\n    categoryID\r\n    name\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Category",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n  getAllCategory{\r\n    _id\r\n    name\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Subcategory",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n  getAllSubcategory{\r\n    _id\r\n    name\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n  getAllProducts{\r\n    _id\r\n    name\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product By ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n  getProductById(productID:\"63261098fcab1a2bbfeea4fd\"){\r\n    name\r\n    price\r\n    quantity\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product By Name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n    getProductByName(productName:\"product 5\"){\r\n        _id\r\n        name \r\n        price\r\n    }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Seller Products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n  getSellerProducts(sellerID:\"63260fd1c2bf597bdbf5a13b\"){\r\n    _id\r\n    name\r\n    price\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Bookmarks For User",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query{\r\n  getBookmarksForUser(sellerID:\"63260fd1c2bf597bdbf5a13b\"){\r\n    _id\r\n    name\r\n    price\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\r\n  updateProduct(input:{\r\n    name:\"product 5\" \r\n  },_id:\"63261ccbab1b65d6ff59a750\"){\r\n    _id\r\n    name\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:4000/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

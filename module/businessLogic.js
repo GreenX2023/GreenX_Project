@@ -2,7 +2,7 @@ const UserSchema=require('../server/Models/User.model');
 const CategorySchema=require('../server/Models/Category.model');
 const ProductSchema=require('../server/Models/Product.model');
 const SubCategorySchema=require('../server/Models/Subcategory.model');
-// const {ObjectId} = require('mongodb'); 
+// const {ObjectId} = require('mongodb');
 
 const getAllCategory = async()=>{
     const result =await CategorySchema.find({}).populate('subCategoryList')
@@ -44,4 +44,19 @@ const getBookmarksForUser = async(args)=>{
     return user[0].bookmarks;
 }
 
-module.exports = {getAllCategory,getAllProducts,getProductById,getProductByName,getSellerProducts,getBookmarksForUser}
+// const updateBookmarksAdd = async(args)=>{
+    
+//     let bookmarkproduct = new ObjectId(`${args.productId}`); 
+//     let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$push": { "bookmarks": bookmarkproduct } }, {
+//         new: true
+//       });
+//     return doc
+// }
+
+module.exports = {
+    getAllCategory,
+    getAllProducts,
+    getProductById,
+    getProductByName,
+    getSellerProducts,
+    getBookmarksForUser}
