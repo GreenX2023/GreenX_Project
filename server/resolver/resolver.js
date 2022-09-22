@@ -4,10 +4,12 @@ const CategorySchema=require('../Models/Category.model');
 const ProductSchema=require('../Models/Product.model');
 const SubCategorySchema=require('../Models/Subcategory.model');
 const {ObjectId} = require('mongodb'); 
-const greenx = require('../../module/greenx.js');
+const greenx = require('../module/greenx.js');
+const mongoose=require('mongoose');
+
 
 const resolver={
-    
+
     getAllCategory: greenx.getAllCategory,
 
     getAllProducts: greenx.getAllProducts,
@@ -106,23 +108,17 @@ const resolver={
         } ,{ returnOriginal: false })
         return updateproductdetails
     },
-    updateBookmarksAdd:async(args)=>{
-    
-        let bookmarkproduct = new ObjectId(`${args.productId}`); 
-        let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$push": { "bookmarks": bookmarkproduct } }, {
-            new: true
-          });
-        return doc
-    },
+    updateBookmarksAdd: greenx.updateBookmarksAdd,
 
-    updateBookmarksremove:async(args)=>{
-        let wishlistproduct = new ObjectId(`${args.productId}`); 
-        let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$pull": { "bookmarks": wishlistproduct } }, {
-            new: true
-          });  
-     return doc
+    updateBookmarksremove: greenx.updateBookmarksremove,
+    // async(args)=>{
+    //     let wishlistproduct = new ObjectId(`${args.productId}`); 
+    //     let doc = await UserSchema.findOneAndUpdate({_id:args._id},{ "$pull": { "bookmarks": wishlistproduct } }, {
+    //         new: true
+    //       });  
+    //  return doc
 
-    },
+    // },
     updateProfile:async(args)=>{
         const {name,email,password,contactnum,Bio,address}=args.input
         let doc=await UserSchema.findByIdAndUpdate({_id:args._id},{
@@ -137,14 +133,10 @@ const resolver={
     },
     deleteProduct:async(args)=>{
         const result=await ProductSchema.find({_id:args.productID})
-        console.log(result)
-        // console.log(subcategoryID)
         const deleteproduct=await ProductSchema.deleteOne({_id:args.productID});
         let product = new ObjectId(`${args.productID}`); 
 
-
-
-        let doc = await UserSchema.findOneAndUpdate({_id:args.userID},{ "$pull": { "wishList":product } }, {
+        let doc = await UserSchema.findOneAndUpdate({_id:args.userID},{ "$pull": { "bookmarks":product } }, {
             new: true
           });  
 
