@@ -1,7 +1,6 @@
 const UserSchema=require('../Models/User.model');
 const CategorySchema=require('../Models/Category.model');
 const ProductSchema=require('../Models/Product.model');
-const SubCategorySchema=require('../Models/Subcategory.model');
 const {ObjectId} = require('mongodb');
 
 

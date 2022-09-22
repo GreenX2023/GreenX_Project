@@ -6,7 +6,8 @@ const CategorySchema= new mongoose.Schema({
     type:String,
     required:true
   },
-  subCategoryList:[{ type:'ObjectId', ref: 'Subcategory' }]
+  subCategoryList:[{ type:'ObjectId', ref: 'Category' }],
+  productList:[{ type:'ObjectId', ref: 'Product' }]
  
 }
 ,

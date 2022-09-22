@@ -1,16 +1,10 @@
 const mongoose=require('mongoose');
 
 
+let Schema = mongoose.Schema
+   
+
 const ProductSchema= new mongoose.Schema({
-  
-    subcategoryID:{
-        type:String,
-        required:true
-    },
-    sellerID:{
-        type:String,
-        required:true
-    },
     name:{
         type:String,
         required:true
@@ -33,6 +27,14 @@ const ProductSchema= new mongoose.Schema({
         type:String,
         required:true
     },
+    CategoryID:{
+        type:String,
+        required:true
+    },
+    sellerID:{
+        type:String,
+        required:true
+    }
    
 }
 ,

@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const UserSchema= new mongoose.Schema({
     Role:{
-        type:Number,
+        type:String,
         required:true
     },
     name:{

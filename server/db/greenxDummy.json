@@ -1,0 +1,43 @@
+{
+    "users":{
+        "user1":{
+            "Role":"admin",
+            "name":"sarthak naik",
+            "email":"sarthaknaik010@gmail.com",
+            "password":"sunnaik051",
+            "contactnum":"8390076015",
+            "Bio":"Admin",
+            "address":"rajbag tarrir canacona goa"
+        },
+        "user2":{
+            "Role":"user",
+            "name":"austin",
+            "email":"austinnaik010@gmail.com",
+            "password":"ausnaik051",
+            "contactnum":"8391076015",
+            "Bio":"I am a seller",
+            "address":"rajbag tarrir ponda goa"
+        },
+        "user3":{
+            "Role":"user",
+            "name":"avishkar",
+            "email":"avishkaraik010@gmail.com",
+            "password":"avinaik051",
+            "contactnum":"8991076015",
+            "Bio":"I am a seller",
+            "address":"rajbag tarrir cuncolim goa"
+        }
+    },
+    "category":{
+        "category1":{
+            "name":"Fruits"
+        },
+        "category2":{
+            "name":"Tools"
+        },
+        "category3":{
+            "name":"Fertilizers"
+        }
+    }
+   
+}
