@@ -3,6 +3,7 @@
         "port": 4000
     },
     "db": {
+        "local_link":"mongodb://0.0.0.0:27017/graphqlGreenx",
         "link":"mongodb+srv://greenx:greenx@cluster0.rjngeit.mongodb.net/?retryWrites=true&w=majority",
         "host": "localhost",
         "port": 27017,
