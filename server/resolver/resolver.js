@@ -4,12 +4,13 @@ const CategorySchema=require('../Models/Category.model');
 const ProductSchema=require('../Models/Product.model');
 const SubCategorySchema=require('../Models/Subcategory.model');
 const {ObjectId} = require('mongodb'); 
-const BL = require('../../module/businessLogic.js');
+const greenx = require('../../module/greenx.js');
 
 const resolver={
-    getAllCategory: BL.getAllCategory,
+    
+    getAllCategory: greenx.getAllCategory,
 
-    getAllProducts:BL.getAllProducts,
+    getAllProducts: greenx.getAllProducts,
 
     getAllSubcategory:async()=>{
         const result=await SubCategorySchema.find({});
@@ -58,13 +59,13 @@ const resolver={
         
     },
 
-    getProductById:BL.getProductById,
+    getProductById:greenx.getProductById,
 
-    getProductByName:BL.getProductByName,
+    getProductByName:greenx.getProductByName,
 
-    getSellerProducts:BL.getSellerProducts,
+    getSellerProducts:greenx.getSellerProducts,
 
-    getBookmarksForUser:BL.getBookmarksForUser,
+    getBookmarksForUser:greenx.getBookmarksForUser,
 
     createSubCategory:async(args)=>{
         var subCategoryDetails =new SubCategorySchema({name:args.name,categoryID:args.categoryID}); 
