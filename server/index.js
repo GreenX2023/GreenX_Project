@@ -20,9 +20,9 @@ app.use(bodyParser.json())
 
 
 //local DB conection
-mongooseConnect()
+// mongooseConnect()
 //Atlas DB connection
-//mongooseAtlasConnect()
+mongooseAtlasConnect()
 
 
 //setting up graphql server for my application
