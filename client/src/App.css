@@ -3,19 +3,19 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 30vmin;
   pointer-events: none;
+  opacity: 1;
+  animation: fade 5s linear;
 }
 
-a {
-  background-color: white;
-  color: black;
+@keyframes fade {
+  0%,100% {opacity: 0;}
+  50% {opacity: 1;}
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a,p {
+  color: white;
 }
 
 .App-header {
