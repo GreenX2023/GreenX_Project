@@ -4,8 +4,10 @@ const app=express();
 const mongoose=require('mongoose');
 const {graphqlHTTP}=require('express-graphql');
 const config = require('config');
-const dbLink = config.get("db.link");
+// const dbLink = config.get("db.link");
 const port = config.get("server.port");
+const dotenv = require('dotenv');
+dotenv.config();
 
 const { mongooseConnect } = require('./db/local.conn');
 const { mongooseAtlasConnect } = require('./db/atlas.conn');
@@ -20,9 +22,9 @@ app.use(bodyParser.json())
 
 
 //local DB conection
-// mongooseConnect()
+mongooseConnect()
 //Atlas DB connection
-mongooseAtlasConnect()
+// mongooseAtlasConnect()
 
 
 //setting up graphql server for my application

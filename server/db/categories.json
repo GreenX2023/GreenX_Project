@@ -1,0 +1,23 @@
+{
+    "category":{
+        "category1":{
+            "name":"Fruits",
+            "subcategories":["fr1","fr2","fr3"]
+        },
+        "category2":{
+            "name":"Tools",
+            "subcategories":["t1","t2","t3"]
+        },
+        "category3":{
+            "name":"Fertilizers",
+            "subcategories":["fe1","fe2","fe3"]
+        },
+        "category4":{
+            "name":"fr1"
+        },
+        "category5":{
+            "name":"fr2"
+        }
+    }
+   
+}

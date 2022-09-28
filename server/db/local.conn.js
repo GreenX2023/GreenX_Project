@@ -4,7 +4,12 @@ const mongoose=require('mongoose');
 const UserModel = require('../Models/User.model');
 const greenxDummyData=require('../db/greenxDummy.json');
 const CategoryModel = require('../Models/Category.model');
+// require('dotenv').config();
 
+
+// console.log(process.env.LOCAL_MONGO_URL);
+
+// console.log(`Db link : ${process.env.ATLAS_MONGO_URL}`);
 
 exports.mongooseConnect=()=>{
     mongoose.connect(dbLink,{
@@ -42,4 +47,4 @@ const dummyData=async()=>{
 }
 
 //Run dummyData function only first time to populate local database with dummy data
-dummyData()
+// dummyData()
