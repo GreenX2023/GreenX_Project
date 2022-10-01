@@ -1,5 +1,5 @@
-const config = require('config');
-const dbLink = config.get("db.local_link");
+// const config = require('config');
+// const dbLink = config.get("db.local_link");
 const mongoose=require('mongoose');
 const UserModel = require('../Models/User.model');
 const greenxDummyData=require('../db/greenxDummy.json');
@@ -12,7 +12,7 @@ const CategoryModel = require('../Models/Category.model');
 // console.log(`Db link : ${process.env.ATLAS_MONGO_URL}`);
 
 exports.mongooseConnect=()=>{
-    mongoose.connect(dbLink,{
+    mongoose.connect("mongodb://0.0.0.0:27017/DummygraphqlGreenx",{
         useNewUrlParser:true,
         useUnifiedTopology:true,
         
@@ -24,7 +24,7 @@ exports.mongooseConnect=()=>{
     });
 }  
 
-const dummyData=async()=>{
+exports.dummyData=async()=>{
     UserModel.insertMany([
         greenxDummyData.users.user1,
         greenxDummyData.users.user2,

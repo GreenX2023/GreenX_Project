@@ -8,7 +8,6 @@ const CategorySchema= new mongoose.Schema({
   },
   subCategoryList:[{ type:'ObjectId', ref: 'Category' }],
   productList:[{ type:'ObjectId', ref: 'Product' }]
- 
 }
 ,
 { timestamps: true }

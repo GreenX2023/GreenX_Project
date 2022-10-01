@@ -27,7 +27,7 @@ const ProductSchema= new mongoose.Schema({
         type:String,
         required:true
     },
-    CategoryID:{
+    categoryID:{
         type:String,
         required:true
     },

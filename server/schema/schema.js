@@ -7,7 +7,6 @@ const Schema=buildSchema(`
         user
     }
 
-    
     type user{
         Role:role
         name:String
@@ -62,6 +61,7 @@ const Schema=buildSchema(`
 
     type Query{
        getAllCategory:[category]
+       getAllSubcategory:[category]
        getAllProducts:[product]
        getProductByCategoryID(categoryID:String):[product]   
        getProductBySubCategoryID(subcategoryID:String):[product]
@@ -70,7 +70,6 @@ const Schema=buildSchema(`
        getSellerProducts(sellerID:String):[product]
        getBookmarksForUser(sellerID:String):[product]
     }
-   
 
     input updateprofile{
         name:String
@@ -80,12 +79,14 @@ const Schema=buildSchema(`
         Bio:String
         address:String
     }
+    
     type deleteproduct{
         acknowledged:Boolean
         deletedCount:Int
     }
 
     type Mutation{
+        createCategory(name:String!,categoryID:String):category
         createProduct(input:createProductInput):product
         updateProduct(input:updateProductInput,_id:String):product
         updateBookmarksAdd(_id:String,productId:String):user
@@ -93,9 +94,6 @@ const Schema=buildSchema(`
         updateProfile(_id:String,input:updateprofile):user
         deleteProduct(userID:String,productID:String):deleteproduct
     }
-
-    
-   
 `);
 
 module.exports=Schema;

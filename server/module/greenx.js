@@ -62,6 +62,32 @@ const updateBookmarksremove =  async(args)=>{
 
 }
 
+const createProduct =  async(args)=>{
+    var productdetails= new ProductSchema(args.input);
+    await productdetails.save();
+    let sellerId=productdetails.sellerID;
+    let productid=productdetails._id;
+    let catid = productdetails.categoryID;
+    let doc = await UserSchema.findOneAndUpdate({_id:sellerId},{ "$push": { "products": productid } }, {
+        new: true
+      });
+    let doc2 = await CategorySchema.findOneAndUpdate({_id:catid},{ "$push": { "productList": productid } }, {
+        new: true
+      });
+
+    return productdetails
+}
+const createCategory = async(args)=>{
+    var CategoryDetails =new CategorySchema({name:args.name,categoryID:args.categoryID}); 
+    await CategoryDetails.save();
+    let catid = CategoryDetails._id;
+    let parentcatid = args.categoryID;
+    let doc = await CategorySchema.findOneAndUpdate({_id:parentcatid},{ "$push": { "subCategoryList": catid } }, {
+        new: true
+      });
+    
+    return CategoryDetails;
+}
 module.exports = {
     getAllCategory,
     getAllProducts,
@@ -70,4 +96,6 @@ module.exports = {
     getSellerProducts,
     getBookmarksForUser,
     updateBookmarksAdd,
-    updateBookmarksremove}
+    updateBookmarksremove,
+    createProduct,
+    createCategory}
