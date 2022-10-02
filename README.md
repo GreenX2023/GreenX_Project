@@ -8,19 +8,17 @@ steps to start backend server :-
    
    >> npm i
 2. Run the start script. 
-   >> npm start
+   >> npm start                 
+   
+   for atlas database connection
+   
+   >> npm run startLocal        
+   
+   for local mongodb connection
 
-By default this will connect you to MongoDB atlas database and start the server on http://localhost:4000/graphql.
+For Local DB population with dummy data :- 
 
-For Local DB :- 
+run greenxDummy.js file in db folder.
 
-In index.js file, Comment "mongooseAtlasConnect()" and un-comment "mongooseConnect()" to use local MongoDB and populate greenX Dummy data. 
-
-//local DB conection
-
-// mongooseConnect( )     <------------- uncomment this
-
-//Atlas DB connection
-
-mongooseAtlasConnect( )   <------------- comment this
+>> node db/greenxDummy.js
 
