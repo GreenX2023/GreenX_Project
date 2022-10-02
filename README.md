@@ -2,23 +2,20 @@
 
 SERVER:
 
-steps to start backend server :-
-1. After cloning repo visit the server folder on your terminal and install node modules. 
-   >> cd server
-   
-   >> npm i
-2. Run the start script. 
-   >> npm start                 
-   
-   for atlas database connection
-   
-   >> npm run startLocal        
-   
-   for local mongodb connection
+Scripts to start server are in server/scripts folder.
 
-For Local DB population with dummy data :- 
+For visual studio code run option on top will run the install and run script by default.
 
-run greenxDummy.js file in db folder.
+Script Files Details :-
 
->> node db/greenxDummy.js
+To install node modules and populate local database and run server (First time)
 
+>> installAndRun.bat
+
+To run server with local database
+
+>> runLocal.bat
+
+To run server with atlas database
+
+>> runAtlas.bat
