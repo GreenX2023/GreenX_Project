@@ -1,11 +1,11 @@
 const config = require('config');
-const dbLink = config.get("db.link");
+// const dbLink = config.get("db.link");
 const mongoose=require('mongoose');
 
 
 
 exports.mongooseAtlasConnect=()=>{
-    mongoose.connect(dbLink,{
+    mongoose.connect('mongodb+srv://greenx:greenx@cluster0.rjngeit.mongodb.net/?retryWrites=true&w=majority',{
         useNewUrlParser:true,
         useUnifiedTopology:true,
         

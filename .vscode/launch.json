@@ -4,20 +4,31 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
-            "command": "npm start",
-            "name": "Run npm start",
+            "command": "${cwd}/server/scripts/installAndRun.bat",
+            "name": "Install and Run",
             "request": "launch",
             "type": "node-terminal"
         },
         {
-            "type": "node",
+            "command": "${cwd}/server/scripts/runAtlas.bat",
+            "name": "Run atlas",
             "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\server\\index.js"
+            "type": "node-terminal"
+        },
+        {
+            "command": "${cwd}/server/scripts/runLocal.bat",
+            "name": "Run Local",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:4000",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }

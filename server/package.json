@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "instal": "npm i --save --force && node db/greenxDummy.js && nodemon indexLocal.js",
     "start": "nodemon index.js",
     "startLocal": "nodemon indexLocal.js"
   },
