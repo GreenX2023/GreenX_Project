@@ -31,3 +31,8 @@ export const getProductById = async(productID: any)=>{
   const result=await  ProductModel.findOne({_id:productID});
   return result;
 }
+
+export const getProductByName = async(productName:any)=>{
+  const result=await  ProductModel.findOne({name:productName});
+  return result;
+}

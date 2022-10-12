@@ -1,5 +1,5 @@
 import { Product,CreateProductInput } from "../schema/product.schema";
-import {createProduct,getAllProducts,getProductById} from '../greenxServices/product.service'
+import {createProduct,getAllProducts,getProductById,getProductByName} from '../greenxServices/product.service'
 import { Query, Resolver,Mutation,Arg } from "type-graphql";
 
 @Resolver()
@@ -22,6 +22,11 @@ export default class ProductResolver{
     @Query(()=>Product)
     getProductById(@Arg('productID') productID: string){
         return getProductById(productID)
+    }
+
+    @Query(()=>Product)
+    getProductByName(@Arg('productName') productName: string){
+        return getProductByName(productName)
     }
 
     @Mutation(()=> Product)
