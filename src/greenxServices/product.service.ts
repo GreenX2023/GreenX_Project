@@ -26,3 +26,8 @@ export const getAllProducts = async()=>{
       console.log('Error in getting products')
   }
 }
+
+export const getProductById = async(productID: any)=>{
+  const result=await  ProductModel.findOne({_id:productID});
+  return result;
+}
