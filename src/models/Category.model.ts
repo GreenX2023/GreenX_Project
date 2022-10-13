@@ -4,7 +4,8 @@ const CategoryModel= new mongoose.Schema({
   name:{
     type:String,
     required:true
-  },
+  },// add Description field for category
+  // add Image field for category
   subCategoryList:[{ type:'ObjectId', ref: 'Category' }],
   productList:[{ type:'ObjectId', ref: 'Product' }]
 }
