@@ -33,7 +33,7 @@ export const getProductById = async(productID: any)=>{
 }
 
 /**
-* @description gets a dummy object for testing a category resolver
+* @description gets product details from the database
 *
 * @param {string} productName - provide the name of the product to fetch
 * 

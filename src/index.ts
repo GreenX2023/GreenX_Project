@@ -2,14 +2,16 @@ import 'reflect-metadata'
 import express,{Express} from 'express'
 import { buildSchema} from 'type-graphql'
 import {graphqlHTTP} from 'express-graphql'
-import {resolvers} from './resolvers/exportAllResolvers'
+import {resolvers} from './resolvers/allResolvers'
 const { mongoLocal }= require('./db/mongo')
 
 /**
  * App
  * @type {Express}
+ * @description app can use all express library methods now
  */
 const app:Express = express()
+//hello
 const PORT = process.env.PORT || 4000
 
 const main = async () =>{
