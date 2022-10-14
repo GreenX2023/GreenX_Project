@@ -5,8 +5,11 @@ import {graphqlHTTP} from 'express-graphql'
 import {resolvers} from './resolvers/exportAllResolvers'
 const { mongoLocal }= require('./db/mongo')
 
-
-const app: Express = express()
+/**
+ * App
+ * @type {Express}
+ */
+const app:Express = express()
 const PORT = process.env.PORT || 4000
 
 const main = async () =>{

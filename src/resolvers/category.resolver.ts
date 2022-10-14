@@ -4,7 +4,11 @@ import { createCategory,getAllCategory } from "../greenxServices/category.servic
 
 @Resolver()
 export default class CategoryResolver{
-
+    /**
+    * @description gets a dummy object for testing a category resolver
+    * 
+    * @returns {{_id: string, name: string, productList: string[]}} dummy Category Details
+    */
     @Query(()=>Category)
     myCategory(){
         return{

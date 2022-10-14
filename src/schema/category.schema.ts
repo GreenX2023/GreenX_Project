@@ -9,6 +9,12 @@ export default class Category{
     @Field(()=>String)
     name: string
 
+    @Field(()=>String)
+    description: string    //new
+
+    @Field(()=>String)
+    image: string      //new
+
     @Field(()=>[Product])
     productList:Array<Product>
 

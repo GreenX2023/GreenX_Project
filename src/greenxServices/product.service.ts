@@ -32,6 +32,13 @@ export const getProductById = async(productID: any)=>{
   return result;
 }
 
+/**
+* @description gets a dummy object for testing a category resolver
+*
+* @param {string} productName - provide the name of the product to fetch
+* 
+* @returns {{_id: string, name: string, productList: string[]}} product details
+*/
 export const getProductByName = async(productName:any)=>{
   const result=await  ProductModel.findOne({name:productName});
   return result;
