@@ -1,7 +1,8 @@
 import Category from "../schema/category.schema";
 import { Query, Resolver ,Mutation,Arg} from "type-graphql";
-import { createCategory,getAllCategory } from "../greenxServices/category.service";
-
+import CategoryService from "../greenxServices/category.service";
+// import { createCategory,getAllCategory } from "../greenxServices/category.service";
+let category= new CategoryService()
 @Resolver()
 export default class CategoryResolver{
     /**
@@ -23,7 +24,7 @@ export default class CategoryResolver{
 
     @Query(()=>[Category])
     getAllCategory(){
-        return getAllCategory()   //populate not working
+        return category.getAllCategory()   //populate not working
     }
 
     @Mutation(()=> Category)
@@ -31,6 +32,6 @@ export default class CategoryResolver{
         @Arg('name') name: String ,
         @Arg('parentCat') parentCat: String
         ){
-        return createCategory(name,parentCat)
+        return category.createCategory(name,parentCat)
     }
 }

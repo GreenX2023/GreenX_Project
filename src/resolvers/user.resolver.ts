@@ -2,16 +2,18 @@ import User from "../schema/user.schema";
 import { CreateUserInput} from "../schema/user.schema";
 import { Query, Resolver,Mutation,Arg } from "type-graphql";
 import { Product } from "../schema/product.schema";
+import UserService from "../greenxServices/user.service";
 // import UserService from "../greenxServices/user.service";
 // const {UserModel} = require('../models/User.model')
-const {createUser,getAllUsers,getUserById,getSellerProducts,getBookmarksForUser,updateBookmarksAdd,updateBookmarksRemove} = require('../greenxServices/user.service')
+
+let user=new UserService()
 
 @Resolver()
 export default class UserResolver{
 
     @Mutation(()=> User)
     createUser(@Arg('input') input: CreateUserInput){
-        return createUser(input)
+        return user.createUser(input)
     }
 
     @Mutation(()=> User)
@@ -19,7 +21,7 @@ export default class UserResolver{
         @Arg('userId') userId: String ,
         @Arg('productId') productId: String
         ){
-        return updateBookmarksAdd(userId,productId)
+        return user.updateBookmarksAdd(userId,productId)
     }
 
     @Mutation(()=> User)
@@ -27,7 +29,7 @@ export default class UserResolver{
         @Arg('userId') userId: String ,
         @Arg('productId') productId: String
         ){
-        return updateBookmarksRemove(userId,productId)
+        return user.updateBookmarksRemove(userId,productId)
     }
 
     @Query(()=>User)
@@ -40,22 +42,22 @@ export default class UserResolver{
     }
     @Query(()=>[User])
     getAllUsers(){
-        return getAllUsers()
+        return user.getAllUsers()
     }
 
     @Query(()=>User)
     getUserById(@Arg('userId') userId: String){
-        return getUserById(userId)
+        return user.getUserById(userId)
     }
 
     @Query(()=>[Product])
     getSellerProducts(@Arg('userId') userId: String){
-        return getSellerProducts(userId)
+        return user.getSellerProducts(userId)
     }
 
     @Query(()=>[Product])
     getBookmarksForUser(@Arg('userId') userId: String){
-        return getBookmarksForUser(userId)
+        return user.getBookmarksForUser(userId)
     }
 
 }

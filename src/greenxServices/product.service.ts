@@ -2,7 +2,8 @@ const ProductModel = require('../models/Product.model')
 const UserModel = require('../models/User.model')
 const CategoryModel = require('../models/Category.model')
 
-export const createProduct = async (input: any) =>{
+export default class ProductService{
+  createProduct = async (input: any) =>{
     const product = new ProductModel(input);
     await product.save();
     let sellerId=product.sellerID;
@@ -17,7 +18,7 @@ export const createProduct = async (input: any) =>{
     return product
 }
 
-export const getAllProducts = async()=>{
+getAllProducts = async()=>{
   const result=await ProductModel.find({});
   if(result){
       return result;
@@ -27,7 +28,7 @@ export const getAllProducts = async()=>{
   }
 }
 
-export const getProductById = async(productID: any)=>{
+getProductById = async(productID: any)=>{
   const result=await  ProductModel.findOne({_id:productID});
   return result;
 }
@@ -39,7 +40,12 @@ export const getProductById = async(productID: any)=>{
 * 
 * @returns {{_id: string, name: string, productList: string[]}} product details
 */
-export const getProductByName = async(productName:any)=>{
+
+getProductByName = async(productName:any)=>{
   const result=await  ProductModel.findOne({name:productName});
   return result;
 }
+}
+
+
+
