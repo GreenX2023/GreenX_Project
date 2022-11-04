@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "watch": "tsc -w",
-    "dev": "nodemon dist/index.js",
+    "dev": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "jsdoc": "jsdoc -c jsdoc.json"
   },
@@ -27,6 +27,7 @@
     "express-graphql": "^0.12.0",
     "mongoose": "^6.6.5",
     "reflect-metadata": "^0.1.13",
+    "ts-node": "^10.9.1",
     "type-graphql": "^1.1.1"
   }
 }
