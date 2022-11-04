@@ -45,6 +45,7 @@ getProductByName = async(productName:any)=>{
   const result=await  ProductModel.findOne({name:productName});
   return result;
 }
+
 }
 
 
