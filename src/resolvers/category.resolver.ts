@@ -28,10 +28,17 @@ export default class CategoryResolver{
     }
 
     @Mutation(()=> Category)
-    createCategory(
+    createSubCategory(
         @Arg('name') name: String ,
         @Arg('parentCat') parentCat: String
         ){
-        return category.createCategory(name,parentCat)
+        return category.createSubCategory(name,parentCat)
+    }
+
+    @Mutation(()=> Category)
+    createCategory(
+        @Arg('name') name: String 
+        ){
+        return category.createCategory(name)
     }
 }
