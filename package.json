@@ -22,6 +22,8 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@types/validator": "^13.7.10",
+    "class-validator": "^0.13.2",
     "config": "^3.3.8",
     "dotenv": "^16.0.3",
     "express": "^4.18.1",
