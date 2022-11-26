@@ -5,11 +5,7 @@ import CategoryService from "../greenxServices/category.service";
 let category= new CategoryService()
 @Resolver()
 export default class CategoryResolver{
-    /**
-    * @description gets a dummy object for testing a category resolver
-    * 
-    * @returns {{_id: string, name: string, productList: string[]}} dummy Category Details
-    */
+   
     @Query(()=>Category)
     myCategory(){
         return{
@@ -22,9 +18,10 @@ export default class CategoryResolver{
         };
     }
 
+    
     @Query(()=>[Category])
     getAllCategory(){
-        return category.getAllCategory()   //populate not working
+        return category.getAllCategory()  
     }
 
     @Mutation(()=> Category)

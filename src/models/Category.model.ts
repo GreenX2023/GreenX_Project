@@ -5,11 +5,9 @@ const CategoryModel= new mongoose.Schema({
     type:String,
     required:true
   },
-  // add Description field for category
   description:{                             //new
     type:String,
   },
-  // add Image field for category
   image:{                                   //new
     type:String,
     // required:true

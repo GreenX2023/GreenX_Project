@@ -5,6 +5,8 @@ import { Product } from "../schema/product.schema";
 import UserService from "../greenxServices/user.service";
 // import UserService from "../greenxServices/user.service";
 // const {UserModel} = require('../models/User.model')
+//decorator helps us to extends the functionality of classes and methods
+
 
 let user=new UserService()
 
