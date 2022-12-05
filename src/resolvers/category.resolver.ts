@@ -15,9 +15,10 @@ export default class CategoryResolver{
     @Mutation(()=> Category)
     createSubCategory(
         @Arg('name') name: String ,
-        @Arg('parentCat') parentCat: String
+        @Arg('parentCat') parentCat: String,
+        @Arg('description') description: String
         ){
-        return category.createSubCategory(name,parentCat)
+        return category.createSubCategory(name,parentCat,description)
     }
 
     @Mutation(()=> Category)

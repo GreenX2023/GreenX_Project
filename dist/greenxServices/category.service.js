@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const CategoryModel = require('../models/Category.model');
 class CategoryService {
     constructor() {
-        this.createSubCategory = async (name, parentCat) => {
-            const category = new CategoryModel({ name });
+        this.createSubCategory = async (name, parentCat, description) => {
+            const category = new CategoryModel({ name, description });
             await category.save();
             let catid = category._id;
             let parentcatid = parentCat;
@@ -13,8 +13,8 @@ class CategoryService {
             });
             return category;
         };
-        this.createCategory = async (name) => {
-            const category = new CategoryModel({ name });
+        this.createCategory = async (name, description) => {
+            const category = new CategoryModel({ name, description });
             await category.save();
             return category;
         };

@@ -21,13 +21,14 @@ const product_service_1 = __importDefault(require("../greenxServices/product.ser
 let product = new product_service_1.default();
 // Describe each resolver comments in Jdoc or Ndoc or other standard format (find out standard format)
 let ProductResolver = class ProductResolver {
-    myProduct() {
-        return {
-            _id: "123",
-            name: "rice",
-            price: 321
-        };
-    }
+    // @Query(()=>Product)
+    // myProduct(){
+    //     return{
+    //         _id:"123",
+    //         name:"rice",
+    //         price:321
+    //     };
+    // }
     getAllProducts() {
         return product.getAllProducts();
     }
@@ -41,12 +42,6 @@ let ProductResolver = class ProductResolver {
         return product.createProduct(input);
     }
 };
-__decorate([
-    (0, type_graphql_1.Query)(() => product_schema_1.Product),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], ProductResolver.prototype, "myProduct", null);
 __decorate([
     (0, type_graphql_1.Query)(() => [product_schema_1.Product]),
     __metadata("design:type", Function),

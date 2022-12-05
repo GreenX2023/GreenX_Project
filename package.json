@@ -36,6 +36,7 @@
     "express-graphql": "^0.12.0",
     "graphql": "^15.8.0",
     "mongoose": "^6.6.5",
+    "mongoose-validator": "^2.1.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",
     "type-graphql": "^1.1.1"

@@ -22,6 +22,7 @@ const product_schema_1 = require("../schema/product.schema");
 const user_service_1 = __importDefault(require("../greenxServices/user.service"));
 // import UserService from "../greenxServices/user.service";
 // const {UserModel} = require('../models/User.model')
+//decorator helps us to extends the functionality of classes and methods
 let user = new user_service_1.default();
 let UserResolver = class UserResolver {
     createUser(input) {

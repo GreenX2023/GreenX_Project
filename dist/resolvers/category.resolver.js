@@ -21,37 +21,16 @@ const category_service_1 = __importDefault(require("../greenxServices/category.s
 // import { createCategory,getAllCategory } from "../greenxServices/category.service";
 let category = new category_service_1.default();
 let CategoryResolver = class CategoryResolver {
-    /**
-    * @description gets a dummy object for testing a category resolver
-    *
-    * @returns {{_id: string, name: string, productList: string[]}} dummy Category Details
-    */
-    myCategory() {
-        return {
-            _id: "123",
-            name: "fruits",
-            productList: [{
-                    name: "apple",
-                    price: 982
-                }]
-        };
-    }
     getAllCategory() {
-        return category.getAllCategory(); //populate not working
+        return category.getAllCategory();
     }
-    createSubCategory(name, parentCat) {
-        return category.createSubCategory(name, parentCat);
+    createSubCategory(name, parentCat, description) {
+        return category.createSubCategory(name, parentCat, description);
     }
-    createCategory(name) {
-        return category.createCategory(name);
+    createCategory(name, description) {
+        return category.createCategory(name, description);
     }
 };
-__decorate([
-    (0, type_graphql_1.Query)(() => category_schema_1.default),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], CategoryResolver.prototype, "myCategory", null);
 __decorate([
     (0, type_graphql_1.Query)(() => [category_schema_1.default]),
     __metadata("design:type", Function),
@@ -62,16 +41,20 @@ __decorate([
     (0, type_graphql_1.Mutation)(() => category_schema_1.default),
     __param(0, (0, type_graphql_1.Arg)('name')),
     __param(1, (0, type_graphql_1.Arg)('parentCat')),
+    __param(2, (0, type_graphql_1.Arg)('description')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String,
+        String,
         String]),
     __metadata("design:returntype", void 0)
 ], CategoryResolver.prototype, "createSubCategory", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => category_schema_1.default),
     __param(0, (0, type_graphql_1.Arg)('name')),
+    __param(1, (0, type_graphql_1.Arg)('description')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String,
+        String]),
     __metadata("design:returntype", void 0)
 ], CategoryResolver.prototype, "createCategory", null);
 CategoryResolver = __decorate([
