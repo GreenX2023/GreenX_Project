@@ -13,10 +13,10 @@ export default class CategoryService{
           return category
     }
 
-    createCategory=async(name:any)=>{
-        const category = new CategoryModel({name});
+    createCategory=async(name:any,description:any)=>{
+        const category = new CategoryModel({name,description});
         await category.save();
-
+        
         return category;
     }
     getAllCategory = async()=>{
