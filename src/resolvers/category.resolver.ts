@@ -6,18 +6,6 @@ let category= new CategoryService()
 @Resolver()
 export default class CategoryResolver{
    
-    @Query(()=>Category)
-    myCategory(){
-        return{
-            _id:"123",
-            name:"fruits",
-            productList:[{
-                name:"apple",
-                price:982
-            }]
-        };
-    }
-
     
     @Query(()=>[Category])
     getAllCategory(){

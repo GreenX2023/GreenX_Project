@@ -9,14 +9,14 @@ let product= new ProductService()
 @Resolver()
 export default class ProductResolver{
 
-    @Query(()=>Product)
-    myProduct(){
-        return{
-            _id:"123",
-            name:"rice",
-            price:321
-        };
-    }
+    // @Query(()=>Product)
+    // myProduct(){
+    //     return{
+    //         _id:"123",
+    //         name:"rice",
+    //         price:321
+    //     };
+    // }
 
     @Query(()=>[Product])
     getAllProducts(){
