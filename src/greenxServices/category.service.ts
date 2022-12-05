@@ -2,8 +2,8 @@ const CategoryModel = require('../models/Category.model')
 
 export default class CategoryService{
 
-   createSubCategory = async (name: any,parentCat: any) =>{
-        const category = new CategoryModel({name});
+   createSubCategory = async (name: any,parentCat: any,description:any) =>{
+        const category = new CategoryModel({name,description});
           await category.save();
           let catid = category._id;
           let parentcatid = parentCat;
@@ -16,7 +16,7 @@ export default class CategoryService{
     createCategory=async(name:any,description:any)=>{
         const category = new CategoryModel({name,description});
         await category.save();
-        
+
         return category;
     }
     getAllCategory = async()=>{
