@@ -10,7 +10,7 @@ const express_graphql_1 = require("express-graphql");
 const allResolvers_1 = require("./resolvers/allResolvers");
 const { mongoLocal } = require('./db/mongo');
 const app = (0, express_1.default)();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 const main = async () => {
     app.use('/graphql', (0, express_graphql_1.graphqlHTTP)({
         schema: await (0, type_graphql_1.buildSchema)({

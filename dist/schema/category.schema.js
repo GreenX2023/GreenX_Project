@@ -8,37 +8,36 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var Category_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 const type_graphql_1 = require("type-graphql");
 const product_schema_1 = require("./product.schema");
-let Category = Category_1 = class Category {
+let Category = class Category {
 };
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Category.prototype, "_id", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Category.prototype, "name", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Category.prototype, "description", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Category.prototype, "image", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => [product_schema_1.Product]),
+    (0, type_graphql_1.Field)(() => [product_schema_1.Product], { nullable: true }),
     __metadata("design:type", Array)
 ], Category.prototype, "productList", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => [Category_1]),
+    (0, type_graphql_1.Field)(() => [String], { nullable: true }),
     __metadata("design:type", Array)
 ], Category.prototype, "subcategoryList", void 0);
-Category = Category_1 = __decorate([
+Category = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], Category);
 exports.default = Category;

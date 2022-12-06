@@ -7,12 +7,12 @@ let category= new CategoryService()
 export default class CategoryResolver{
    
     
-    @Query(()=>[Category])
+    @Query(()=>[Category],{nullable: true})
     getAllCategory(){
         return category.getAllCategory()  
     }
 
-    @Mutation(()=> Category)
+    @Mutation(()=> Category,{nullable: true})
     createSubCategory(
         @Arg('name') name: String ,
         @Arg('parentCat') parentCat: String,
@@ -21,7 +21,7 @@ export default class CategoryResolver{
         return category.createSubCategory(name,parentCat,description)
     }
 
-    @Mutation(()=> Category)
+    @Mutation(()=> Category,{nullable: true})
     createCategory(
         @Arg('name') name: String ,
         @Arg('description') description: String 

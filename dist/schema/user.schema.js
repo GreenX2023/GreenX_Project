@@ -11,38 +11,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateUserInput = void 0;
 const type_graphql_1 = require("type-graphql");
+const product_schema_1 = require("./product.schema");
 let User = class User {
 };
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "_id", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "role", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "name", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "contactnum", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "address", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "bio", void 0);
 __decorate([
@@ -50,7 +51,7 @@ __decorate([
     __metadata("design:type", Array)
 ], User.prototype, "products", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => [String]),
+    (0, type_graphql_1.Field)(() => [product_schema_1.Product]),
     __metadata("design:type", Array)
 ], User.prototype, "bookmarks", void 0);
 User = __decorate([

@@ -32,13 +32,13 @@ let CategoryResolver = class CategoryResolver {
     }
 };
 __decorate([
-    (0, type_graphql_1.Query)(() => [category_schema_1.default]),
+    (0, type_graphql_1.Query)(() => [category_schema_1.default], { nullable: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], CategoryResolver.prototype, "getAllCategory", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => category_schema_1.default),
+    (0, type_graphql_1.Mutation)(() => category_schema_1.default, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('name')),
     __param(1, (0, type_graphql_1.Arg)('parentCat')),
     __param(2, (0, type_graphql_1.Arg)('description')),
@@ -49,7 +49,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], CategoryResolver.prototype, "createSubCategory", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => category_schema_1.default),
+    (0, type_graphql_1.Mutation)(() => category_schema_1.default, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('name')),
     __param(1, (0, type_graphql_1.Arg)('description')),
     __metadata("design:type", Function),

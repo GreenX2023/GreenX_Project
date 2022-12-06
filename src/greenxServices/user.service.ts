@@ -26,8 +26,10 @@ export default class UserService{
      return doc
     }
     getAllUsers = async()=>{
-        const result=await UserModel.find({});
+        const result=await UserModel.find({})
+        console.log(result)
         if(result){
+            
             return result;
         }
         else{

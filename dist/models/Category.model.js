@@ -7,11 +7,6 @@ var nameValidator = [
         validator: 'isLength',
         arguments: [3, 50],
         message: 'Name should be between 3 and 50 characters'
-    }),
-    validate({
-        validator: 'isAlpha',
-        passIfEmpty: true,
-        message: 'Name should contain characters only'
     })
 ];
 var descriptionValidator = [

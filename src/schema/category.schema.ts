@@ -3,21 +3,21 @@ import { Product } from "./product.schema";
 
 @ObjectType()
 export default class Category{
-    @Field(() => String)
+    @Field(() => String,{nullable: true})
     _id: string
 
-    @Field(()=>String)
+    @Field(()=>String,{nullable: true})
     name: string
 
-    @Field(()=>String)
+    @Field(()=>String,{nullable: true})
     description: string    //new
 
-    @Field(()=>String)
+    @Field(()=>String,{nullable: true})
     image: string      //new
 
-    @Field(()=>[Product])
+    @Field(()=>[Product],{nullable: true})
     productList:Array<Product>
 
-    @Field(()=>[Category])
-    subcategoryList:Array<Category>
+    @Field(()=>[String],{nullable: true})
+    subcategoryList:Array<string>
 }

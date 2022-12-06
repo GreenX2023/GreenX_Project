@@ -25,6 +25,7 @@ class UserService {
         };
         this.getAllUsers = async () => {
             const result = await UserModel.find({});
+            console.log(result);
             if (result) {
                 return result;
             }

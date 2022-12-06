@@ -14,39 +14,39 @@ const type_graphql_1 = require("type-graphql");
 let Product = class Product {
 };
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Product.prototype, "_id", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Product.prototype, "name", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Product.prototype, "description", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => Number),
+    (0, type_graphql_1.Field)(() => Number, { nullable: true }),
     __metadata("design:type", Number)
 ], Product.prototype, "price", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Product.prototype, "quantity", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => [String]),
+    (0, type_graphql_1.Field)(() => [String], { nullable: true }),
     __metadata("design:type", Array)
 ], Product.prototype, "images", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Product.prototype, "location", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Product.prototype, "sellerID", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Product.prototype, "categoryID", void 0);
 Product = __decorate([
@@ -56,31 +56,31 @@ exports.Product = Product;
 let CreateProductInput = class CreateProductInput {
 };
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], CreateProductInput.prototype, "name", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], CreateProductInput.prototype, "description", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => Number),
+    (0, type_graphql_1.Field)(() => Number, { nullable: true }),
     __metadata("design:type", Number)
 ], CreateProductInput.prototype, "price", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], CreateProductInput.prototype, "quantity", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], CreateProductInput.prototype, "location", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], CreateProductInput.prototype, "sellerID", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => String),
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], CreateProductInput.prototype, "categoryID", void 0);
 CreateProductInput = __decorate([
