@@ -38,7 +38,7 @@ const CategoryModel= new mongoose.Schema({
     type:String,
     // required:true
   },
-  subCategoryList:[{ type:'ObjectId', ref: 'Category' }],
+  subCategoryList:[],
   productList:[{ type:'ObjectId', ref: 'Product' }]
 }
 ,

@@ -31,7 +31,7 @@ const CategoryModel = new mongoose.Schema({
         type: String,
         // required:true
     },
-    subCategoryList: [{ type: 'ObjectId', ref: 'Category' }],
+    subCategoryList: [],
     productList: [{ type: 'ObjectId', ref: 'Product' }]
 }, { timestamps: true });
 module.exports = new mongoose.model('Category', CategoryModel);
