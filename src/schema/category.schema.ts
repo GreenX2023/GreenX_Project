@@ -18,6 +18,5 @@ export default class Category{
     @Field(()=>[Product],{nullable: true})
     productList:Array<Product>
 
-    @Field(()=>[String],{nullable: true})
-    subcategoryList:Array<string>
+    
 }

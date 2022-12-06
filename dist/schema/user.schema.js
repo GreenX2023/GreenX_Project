@@ -47,7 +47,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "bio", void 0);
 __decorate([
-    (0, type_graphql_1.Field)(() => [String]),
+    (0, type_graphql_1.Field)(() => [product_schema_1.Product]),
     __metadata("design:type", Array)
 ], User.prototype, "products", void 0);
 __decorate([
@@ -80,6 +80,14 @@ __decorate([
     (0, type_graphql_1.Field)(() => String),
     __metadata("design:type", String)
 ], CreateUserInput.prototype, "contactnum", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => String),
+    __metadata("design:type", String)
+], CreateUserInput.prototype, "address", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => String),
+    __metadata("design:type", String)
+], CreateUserInput.prototype, "bio", void 0);
 CreateUserInput = __decorate([
     (0, type_graphql_1.InputType)()
 ], CreateUserInput);

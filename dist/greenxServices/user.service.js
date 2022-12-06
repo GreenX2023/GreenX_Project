@@ -24,7 +24,7 @@ class UserService {
             return doc;
         };
         this.getAllUsers = async () => {
-            const result = await UserModel.find({});
+            const result = await UserModel.find({}).populate('products');
             console.log(result);
             if (result) {
                 return result;

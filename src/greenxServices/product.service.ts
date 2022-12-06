@@ -4,6 +4,21 @@ const CategoryModel = require('../models/Category.model')
 
 export default class ProductService{
   createProduct = async (input: any) =>{
+    if(input.sellerID.length!=24 || input.categoryID.length!=24){
+      throw new Error("Please provide valid seller and Customer ID");
+    }
+   
+    const user=await UserModel.find({_id:input.sellerID})
+    const category=await CategoryModel.find({_id:input.categoryID})
+
+    if(user.length==0){
+      throw new Error("Please provide valid seller ID")
+    }
+
+    if(category.length==0 ){
+      throw new Error("Please provide valid Category ID")
+    }
+    
     const product = new ProductModel(input);
     await product.save();
     let sellerId=product.sellerID;
@@ -24,24 +39,22 @@ getAllProducts = async()=>{
       return result;
   }
   else{
-      console.log('Error in getting products')
+      throw new Error('Error in getting products')
   }
 }
 
 getProductById = async(productID: any)=>{
+  if(productID.length!=24){
+    throw new Error("Product ID must be of Length 24")
+}
   const result=await  ProductModel.findOne({_id:productID});
   return result;
 }
 
-/**
-* @description gets product details from the database
-*
-* @param {string} productName - provide the name of the product to fetch
-* 
-* @returns {{_id: string, name: string, productList: string[]}} product details
-*/
-
 getProductByName = async(productName:any)=>{
+  if(productName.length==0){
+    throw new Error("Product Name is Empty")
+  }
   const result=await  ProductModel.findOne({name:productName});
   return result;
 }

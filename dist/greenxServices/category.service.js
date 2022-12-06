@@ -7,6 +7,10 @@ class CategoryService {
             if (parentCat.length != 24) {
                 throw new Error("Parent CatgoryID must be of Length 24");
             }
+            const categoryAvailable = await CategoryModel.find({ _id: parentCat });
+            if (categoryAvailable.length == 0) {
+                throw new Error("Please Enter Valid CategoryID");
+            }
             const category = new CategoryModel({ name, description });
             await category.save();
             let catid = category._id;
@@ -16,30 +20,27 @@ class CategoryService {
             });
             return category;
         };
+        this.getAllSubCategoryByCategoryId = async (categoryId) => {
+            const category = await CategoryModel.find({ _id: categoryId });
+            if (category.length == 0) {
+                throw new Error(`No subcategory available got CategoryId ${categoryId}`);
+            }
+            const subCategoryIds = category[0].subCategoryList;
+            const subCategory = await CategoryModel.find({ _id: subCategoryIds });
+            console.log(subCategory);
+            return subCategory;
+        };
         this.createCategory = async (name, description) => {
             const category = new CategoryModel({ name, description });
             await category.save();
             return category;
         };
         this.getAllCategory = async () => {
-            // const result=await UserModel.find({}).populate("products");
-            // console.log("hey"+result)
-            // if(result){
-            //     console.log(result)
-            //     return result;
-            // }
-            // else{
-            //     console.log('Error in getting users')
-            // }
             const result = await CategoryModel.find({}).populate("productList");
-            console.log("hey" + result);
             if (result) {
-                console.log(result);
-                console.log("heyy" + result[0]);
                 return result;
             }
             else {
-                console.log('Error in geting category');
                 throw new Error('Error in geting category');
             }
         };

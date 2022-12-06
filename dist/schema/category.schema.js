@@ -33,10 +33,6 @@ __decorate([
     (0, type_graphql_1.Field)(() => [product_schema_1.Product], { nullable: true }),
     __metadata("design:type", Array)
 ], Category.prototype, "productList", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(() => [String], { nullable: true }),
-    __metadata("design:type", Array)
-], Category.prototype, "subcategoryList", void 0);
 Category = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], Category);

@@ -27,8 +27,8 @@ export default class User{
     @Field(() => String,{nullable: true})
     bio: string
 
-    @Field(()=>[String])
-    products:Array<string>
+    @Field(()=>[Product])
+    products:Array<Product>
 
     @Field(()=>[Product])
     bookmarks:Array<Product>
@@ -50,5 +50,11 @@ export class CreateUserInput{
 
     @Field(()=>String)
     contactnum: string;
+
+    @Field(() => String)
+    address: string
+
+    @Field(() => String)
+    bio: string
 
 }

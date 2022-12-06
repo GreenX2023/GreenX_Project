@@ -26,19 +26,21 @@ export {}
 const CategoryModel= new mongoose.Schema({
   name:{
     type:String,
-    required:true,
+    required: [true, 'Name is required.'],
     validate: nameValidator
   },
   description:{                             //new
     type:String,
-    required:true,
+    required: [true, 'Description is required.'],
     validate: descriptionValidator
   },
   image:{                                   //new
     type:String,
     // required:true
   },
-  subCategoryList:[],
+  subCategoryList:[{
+    type: String
+  }],
   productList:[{ type:'ObjectId', ref: 'Product' }]
 }
 ,

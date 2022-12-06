@@ -19,19 +19,21 @@ var descriptionValidator = [
 const CategoryModel = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: [true, 'Name is required.'],
         validate: nameValidator
     },
     description: {
         type: String,
-        required: true,
+        required: [true, 'Description is required.'],
         validate: descriptionValidator
     },
     image: {
         type: String,
         // required:true
     },
-    subCategoryList: [],
+    subCategoryList: [{
+            type: String
+        }],
     productList: [{ type: 'ObjectId', ref: 'Product' }]
 }, { timestamps: true });
 module.exports = new mongoose.model('Category', CategoryModel);

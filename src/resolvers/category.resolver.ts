@@ -12,6 +12,13 @@ export default class CategoryResolver{
         return category.getAllCategory()  
     }
 
+    @Query(()=>[Category],{nullable: true})
+    getAllSubCategoryByCategoryId(
+        @Arg('categoryId') categoryId: String
+    ){
+        return category.getAllSubCategoryByCategoryId(categoryId)  
+    }
+
     @Mutation(()=> Category,{nullable: true})
     createSubCategory(
         @Arg('name') name: String ,

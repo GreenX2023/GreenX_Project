@@ -1,4 +1,6 @@
 import { Schema, model} from 'mongoose';
+var validate = require('mongoose-validator');
+
 
 interface User {
     role:string;
@@ -12,33 +14,54 @@ interface User {
     bookmarks:[string]
   }
   
-  // 2. Create a Schema corresponding to the document interface.
+  var roleValidator = [
+    validate({
+      validator: 'isLength',
+      arguments: [3, 15],
+      message: 'Role should be between 3 and 15 characters'
+    })
+  ];
+
+  var nameValidator = [
+    validate({
+      validator: 'isLength',
+      arguments: [3, 50],
+      message: 'Name should be between 3 and 50 characters'
+    })
+  ];
+  
+
   const UserModel = new Schema<User>({
             role:{
                 type:String,
-                required:true
+                required: [true, 'Role is required.'],
+                validate:roleValidator
             },
             name:{
                 type:String,
-                required:true
+                required: [true, 'Name is required.'],
+                validate:nameValidator
             },
             email:{
-                type:String,
-                required:true
+              type:String,
+              required: [true, 'Email is required.'],
+              unique:true
             },
             password:{
                 type:String,
-                required:true
+                required: [true, 'Password is required.']
             },
             contactnum:{
                 type:String,
-                required:true
+                required: [true, 'Contact number is required.']
             },
             bio:{
-                type:String
+                type:String,
+                required: [true, 'Bio is required.']
             },
             address:{
-                type:String
+                type:String,
+                required: [true, 'Address is required.']
             },
             products:[{  type:'ObjectId', ref: 'Product' }],
             bookmarks:[{  type:'ObjectId', ref: 'Product' }]
