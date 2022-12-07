@@ -45,8 +45,6 @@ export default class CategoryService{
         else{
             throw new Error('Error in geting category')
         }
-
-       
     }
 
 }
