@@ -33,12 +33,12 @@ export default class CategoryService{
     }
 
     createCategory=async(name:String,description:String)=>{
-        const category = new CategoryModel({name,description});
+        const category = new CategoryModel({name,description,isCategory:true});
         await category.save();
         return category;
     }
     getAllCategory = async()=>{
-        const result =await CategoryModel.find({}).populate("productList");
+        const result =await CategoryModel.find({isCategory:true}).populate("productList");
         if(result){
             return result
         }

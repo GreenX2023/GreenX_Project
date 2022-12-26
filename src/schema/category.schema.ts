@@ -10,10 +10,10 @@ export default class Category{
     name: string
 
     @Field(()=>String,{nullable: true})
-    description: string    //new
+    description: string    
 
     @Field(()=>String,{nullable: true})
-    image: string      //new
+    image: string      
 
     @Field(()=>[Product],{nullable: true})
     productList:Array<Product>

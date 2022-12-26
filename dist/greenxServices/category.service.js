@@ -31,12 +31,12 @@ class CategoryService {
             return subCategory;
         };
         this.createCategory = async (name, description) => {
-            const category = new CategoryModel({ name, description });
+            const category = new CategoryModel({ name, description, isCategory: true });
             await category.save();
             return category;
         };
         this.getAllCategory = async () => {
-            const result = await CategoryModel.find({}).populate("productList");
+            const result = await CategoryModel.find({ isCategory: true }).populate("productList");
             if (result) {
                 return result;
             }

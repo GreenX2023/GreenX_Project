@@ -19,16 +19,7 @@ const product_schema_1 = require("../schema/product.schema");
 const type_graphql_1 = require("type-graphql");
 const product_service_1 = __importDefault(require("../greenxServices/product.service"));
 let product = new product_service_1.default();
-// Describe each resolver comments in Jdoc or Ndoc or other standard format (find out standard format)
 let ProductResolver = class ProductResolver {
-    // @Query(()=>Product)
-    // myProduct(){
-    //     return{
-    //         _id:"123",
-    //         name:"rice",
-    //         price:321
-    //     };
-    // }
     getAllProducts() {
         return product.getAllProducts();
     }

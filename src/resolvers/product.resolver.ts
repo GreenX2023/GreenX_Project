@@ -5,18 +5,9 @@ import ProductService from "../greenxServices/product.service";
 
 let product= new ProductService()
 
-// Describe each resolver comments in Jdoc or Ndoc or other standard format (find out standard format)
 @Resolver()
 export default class ProductResolver{
 
-    // @Query(()=>Product)
-    // myProduct(){
-    //     return{
-    //         _id:"123",
-    //         name:"rice",
-    //         price:321
-    //     };
-    // }
 
     @Query(()=>[Product])
     getAllProducts(){

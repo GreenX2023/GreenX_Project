@@ -4,14 +4,16 @@ import { buildSchema} from 'type-graphql'
 import {graphqlHTTP} from 'express-graphql'
 import {resolvers} from './resolvers/allResolvers'
 const { mongoLocal }= require('./db/mongo')
+const bodyParser = require('body-parser');
+
 
 const app:Express = express()
 
 const PORT = process.env.PORT || 3000
 
-
+app.use(bodyParser.json());
 const main = async () =>{
-
+    
     app.use('/graphql',graphqlHTTP({
         schema:await buildSchema({
             resolvers

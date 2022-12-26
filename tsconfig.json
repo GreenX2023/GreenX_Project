@@ -24,6 +24,6 @@
     "baseUrl": "."
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts"]
+  "include": ["./src/**/*.ts", "src/testing/category/getAllSubCategoryByCategoryId.testing.mjs", "src/testing/category/createCategory.testing.mjs", "src/testing/category/getCategory.testing.mjs", "src/testing/Test.mjs"]
 
 }

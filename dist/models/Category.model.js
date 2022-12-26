@@ -27,6 +27,10 @@ const CategoryModel = new mongoose.Schema({
         required: [true, 'Description is required.'],
         validate: descriptionValidator
     },
+    isCategory: {
+        type: Boolean,
+        default: false
+    },
     image: {
         type: String,
         // required:true
