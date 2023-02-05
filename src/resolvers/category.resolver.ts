@@ -31,7 +31,7 @@ export default class CategoryResolver{
     @Mutation(()=> Category,{nullable: true})
     createCategory(
         @Arg('name') name: String ,
-        @Arg('description') description: String 
+        @Arg('description') description: String
         ){
         return category.createCategory(name,description)
     }
