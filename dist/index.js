@@ -10,9 +10,11 @@ const express_graphql_1 = require("express-graphql");
 const allResolvers_1 = require("./resolvers/allResolvers");
 const { mongoLocal } = require('./db/mongo');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
+app.use(cors());
 const main = async () => {
     app.use('/graphql', (0, express_graphql_1.graphqlHTTP)({
         schema: await (0, type_graphql_1.buildSchema)({
