@@ -17,6 +17,28 @@ export default class UserService{
        
     }
 
+    getNearByProductByUserLocation=async(latitude:number,longitude:number)=>{
+
+        try {
+            const users = await UserModel.find({
+                location: {
+                  $nearSphere: {
+                    $geometry: {
+                      type: 'Point',
+                      coordinates: [longitude, latitude],
+                    },
+                    $maxDistance: 30000, // 30km in meters
+                  },
+                },
+              });    
+              console.log(users)
+
+              return users;
+        } catch (error) {
+            throw new Error(error)
+        }
+       
+    }
     register=async(input:CreateUserInput)=>{
         try {
             const hashedPassword=await hash(input.password,12);
