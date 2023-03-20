@@ -13,6 +13,10 @@ interface User {
     products:[string]
     bookmarks:[string]
     token:string
+    location: {
+      type: 'Point';
+      coordinates: [number, number];
+    };
   }
   
   var roleValidator = [
@@ -64,8 +68,23 @@ interface User {
                 type:String,
                 required: [true, 'Address is required.']
             },
+
             products:[{  type:'ObjectId', ref: 'Product' }],
             bookmarks:[{  type:'ObjectId', ref: 'Product' }],
+
+            
+            location: {
+              type: {
+                type:String,
+                enum: ['Point'],
+                required: true,
+              },
+              coordinates: {
+                type: [Number],
+                required: true,
+              }
+            }
+              ,
             token:{
               type:String,
               required:true

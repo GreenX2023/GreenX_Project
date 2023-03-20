@@ -32,6 +32,13 @@ export default class User{
 
     @Field(()=>[Product])
     bookmarks:Array<Product>
+
+    @Field(()=>String)
+    location!: {
+        type: 'Point';
+        coordinates: [number, number];
+      };
+
 }
 
 @InputType()
@@ -56,5 +63,12 @@ export class CreateUserInput{
 
     @Field(() => String)
     bio: string
+
+    @Field(()=>String)
+    location!: {
+        type: 'Point';
+        coordinates: [number, number];
+      };
+
 
 }
