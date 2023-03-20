@@ -7,9 +7,14 @@ const bcrypt_1 = require("bcrypt");
 class UserService {
     constructor() {
         this.createUser = async (input) => {
-            const user = new UserModel(input);
-            await user.save();
-            return user;
+            try {
+                const user = new UserModel(input);
+                await user.save();
+                return user;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
         };
         this.register = async (input) => {
             const hashedPassword = await (0, bcrypt_1.hash)(input.password, 12);
