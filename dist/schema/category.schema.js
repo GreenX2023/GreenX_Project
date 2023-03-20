@@ -27,7 +27,7 @@ __decorate([
 ], Category.prototype, "description", void 0);
 __decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Array)
 ], Category.prototype, "image", void 0);
 __decorate([
     (0, type_graphql_1.Field)(() => [product_schema_1.Product], { nullable: true }),

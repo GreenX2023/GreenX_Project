@@ -12,6 +12,7 @@ interface User {
     address:string;
     products:[string]
     bookmarks:[string]
+    token:string
   }
   
   var roleValidator = [
@@ -64,7 +65,11 @@ interface User {
                 required: [true, 'Address is required.']
             },
             products:[{  type:'ObjectId', ref: 'Product' }],
-            bookmarks:[{  type:'ObjectId', ref: 'Product' }]
+            bookmarks:[{  type:'ObjectId', ref: 'Product' }],
+            token:{
+              type:String,
+              required:true
+            }
     
   });
   

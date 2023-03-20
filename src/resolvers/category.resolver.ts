@@ -23,16 +23,18 @@ export default class CategoryResolver{
     createSubCategory(
         @Arg('name') name: String ,
         @Arg('parentCat') parentCat: String,
-        @Arg('description') description: String
+        @Arg('description') description: String,
+        @Arg('image') image:String
         ){
-        return category.createSubCategory(name,parentCat,description)
+        return category.createSubCategory(name,parentCat,description,image)
     }
 
     @Mutation(()=> Category,{nullable: true})
     createCategory(
         @Arg('name') name: String ,
-        @Arg('description') description: String
+        @Arg('description') description: String,
+        @Arg('image') image:String
         ){
-        return category.createCategory(name,description)
+        return category.createCategory(name,description,image)
     }
 }

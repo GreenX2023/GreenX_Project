@@ -1,6 +1,8 @@
+import { CreateUserInput } from "../schema/user.schema";
+import { sign } from "jsonwebtoken";
 const UserModel = require('../models/User.model')
 const {ObjectId} = require('mongodb');
-
+import { compare, hash } from "bcrypt";
 
 
 export default class UserService{
@@ -8,6 +10,38 @@ export default class UserService{
         const user = new UserModel(input);
         await user.save();
         return user
+    }
+    register=async(input:CreateUserInput)=>{
+         const hashedPassword=await hash(input.password,12);
+        const new_user=new UserModel({
+                role:input.role,
+                name:input.name,
+                email:input.email,
+                bio:input.bio,
+                address:input.address,
+                contactnum:input.contactnum,
+                password:hashedPassword
+        })
+
+        await new_user.save()
+        return new_user
+    }
+    login=async(email:string,password:string)=>{
+        const existingUser=await UserModel.findOne({email}
+        )
+        if(!existingUser){
+            throw new Error("Invalid login");
+        }
+        const passwordValid = await compare(password, existingUser.password);
+        if(!passwordValid){
+            throw new Error("Invalid login");
+        }
+        const token = sign({ userId: existingUser.id, userRole:existingUser.role }, process.env.JWT_SECRET!, {
+            expiresIn: "1d",
+          });
+
+          await UserModel.findOneAndUpdate({token},{email})
+          return token
     }
     updateBookmarksAdd = async(userId:any,productId:any)=>{
     

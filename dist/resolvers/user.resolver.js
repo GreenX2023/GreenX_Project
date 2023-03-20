@@ -19,7 +19,9 @@ const user_schema_1 = __importDefault(require("../schema/user.schema"));
 const user_schema_2 = require("../schema/user.schema");
 const type_graphql_1 = require("type-graphql");
 const product_schema_1 = require("../schema/product.schema");
+const type_graphql_2 = require("type-graphql");
 const user_service_1 = __importDefault(require("../greenxServices/user.service"));
+const authmiddleware_1 = require("../middleware/authmiddleware");
 // import UserService from "../greenxServices/user.service";
 // const {UserModel} = require('../models/User.model')
 //decorator helps us to extends the functionality of classes and methods
@@ -27,6 +29,15 @@ let user = new user_service_1.default();
 let UserResolver = class UserResolver {
     createUser(input) {
         return user.createUser(input);
+    }
+    register(input) {
+        return user.register(input);
+    }
+    login(email, password) {
+        return user.login(email, password);
+    }
+    logout() {
+        return true;
     }
     updateBookmarksAdd(userId, productId) {
         return user.updateBookmarksAdd(userId, productId);
@@ -56,11 +67,33 @@ let UserResolver = class UserResolver {
 };
 __decorate([
     (0, type_graphql_1.Mutation)(() => user_schema_1.default),
+    (0, type_graphql_2.UseMiddleware)(authmiddleware_1.authMiddleware),
     __param(0, (0, type_graphql_1.Arg)('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_schema_2.CreateUserInput]),
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "createUser", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => user_schema_1.default),
+    __param(0, (0, type_graphql_1.Arg)('input')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [user_schema_2.CreateUserInput]),
+    __metadata("design:returntype", void 0)
+], UserResolver.prototype, "register", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => String),
+    __param(0, (0, type_graphql_1.Arg)("email")),
+    __param(1, (0, type_graphql_1.Arg)("password")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UserResolver.prototype, "login", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => Boolean),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UserResolver.prototype, "logout", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => user_schema_1.default),
     __param(0, (0, type_graphql_1.Arg)('userId')),

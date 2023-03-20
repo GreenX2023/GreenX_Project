@@ -49,7 +49,11 @@ const UserModel = new mongoose_1.Schema({
         required: [true, 'Address is required.']
     },
     products: [{ type: 'ObjectId', ref: 'Product' }],
-    bookmarks: [{ type: 'ObjectId', ref: 'Product' }]
+    bookmarks: [{ type: 'ObjectId', ref: 'Product' }],
+    token: {
+        type: String,
+        required: true
+    }
 });
 // 3. Create a Model.
 module.exports = (0, mongoose_1.model)('User', UserModel);

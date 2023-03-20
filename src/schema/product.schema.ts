@@ -1,4 +1,7 @@
 import { Field, ObjectType,InputType } from "type-graphql";
+// @ts-ignore
+import GraphQLUpload from 'graphql-upload/public/GraphQLUpload.js';
+
 
 @ObjectType()
 export class Product{
@@ -52,5 +55,8 @@ export class CreateProductInput{
 
     @Field(()=>String,{nullable: true})
     categoryID:string
+
+    @Field(()=>[String],{nullable:true})
+    images:string[]
 
 }

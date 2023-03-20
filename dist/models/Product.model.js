@@ -42,7 +42,7 @@ const ProductSchema = new mongoose.Schema({
         required: [true, 'Quantity is required.']
     },
     images: {
-        type: String,
+        type: [String],
         // required:true
     },
     location: {

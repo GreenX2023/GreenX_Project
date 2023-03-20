@@ -3,9 +3,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ProductModel = require('../models/Product.model');
 const UserModel = require('../models/User.model');
 const CategoryModel = require('../models/Category.model');
+const cloudinary = require('../helper/cloudinary.upload');
 class ProductService {
     constructor() {
         this.createProduct = async (input) => {
+            const { name, description, price, quantity, location, sellerID, categoryID, images } = input;
+            const uploadimages = await Promise.all(images.map(async (image) => {
+                try {
+                    const result = await cloudinary.uploader.upload(image);
+                    return result.url;
+                }
+                catch (error) {
+                    throw new Error(`Error uploading image: ${error.message}`);
+                }
+            })) || ["https://liftlearning.com/wp-content/uploads/2020/09/default-image.png"];
             if (input.sellerID.length != 24 || input.categoryID.length != 24) {
                 throw new Error("Please provide valid seller and Customer ID");
             }
@@ -17,7 +28,16 @@ class ProductService {
             if (category.length == 0) {
                 throw new Error("Please provide valid Category ID");
             }
-            const product = new ProductModel(input);
+            const product = new ProductModel({
+                name,
+                price,
+                description,
+                quantity,
+                images: uploadimages,
+                location,
+                categoryID,
+                sellerID
+            });
             await product.save();
             let sellerId = product.sellerID;
             let productid = product._id;

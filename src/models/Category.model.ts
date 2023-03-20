@@ -21,8 +21,6 @@ var descriptionValidator = [
 
 export {}
 
-
-
 const CategoryModel= new mongoose.Schema({
   name:{
     type:String,

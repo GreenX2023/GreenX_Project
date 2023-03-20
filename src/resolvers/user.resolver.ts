@@ -2,7 +2,10 @@ import User from "../schema/user.schema";
 import { CreateUserInput} from "../schema/user.schema";
 import { Query, Resolver,Mutation,Arg } from "type-graphql";
 import { Product } from "../schema/product.schema";
+import { UseMiddleware } from "type-graphql";
 import UserService from "../greenxServices/user.service";
+import { authMiddleware } from "../middleware/authmiddleware";
+
 // import UserService from "../greenxServices/user.service";
 // const {UserModel} = require('../models/User.model')
 //decorator helps us to extends the functionality of classes and methods
@@ -14,8 +17,27 @@ let user=new UserService()
 export default class UserResolver{
 
     @Mutation(()=> User)
+    @UseMiddleware(authMiddleware)
     createUser(@Arg('input') input: CreateUserInput){
         return user.createUser(input)
+    }
+     
+    @Mutation(()=>User)
+     register(@Arg('input') input:CreateUserInput){
+        return user.register(input) 
+    }
+
+    @Mutation(()=>String)
+      login(
+        @Arg("email") email:string,
+        @Arg("password") password:string )
+        {
+           return user.login(email,password)
+        }
+
+    @Mutation(()=>Boolean)
+    logout(){
+        return true
     }
 
     @Mutation(()=> User)

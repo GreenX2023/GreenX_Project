@@ -1,8 +1,9 @@
 const CategoryModel = require('../models/Category.model')
+import { isImageUrl } from "../helper/isimage.cloudinary";
 
 export default class CategoryService{
 
-   createSubCategory = async (name: String,parentCat: String,description:String) =>{
+   createSubCategory = async (name: String,parentCat: String,description:String,image:String) =>{
             if(parentCat.length!=24){
                 throw new Error("Parent CatgoryID must be of Length 24")
             }
@@ -10,15 +11,22 @@ export default class CategoryService{
             if(categoryAvailable.length==0){
                 throw new Error("Please Enter Valid CategoryID")
             }
-          const category = new CategoryModel({name,description});
-          await category.save();
-          let catid = category._id;
-          let parentcatid = parentCat;
-          await CategoryModel.findOneAndUpdate({_id:parentcatid},{ "$push": { "subCategoryList": catid } }, {
-            new: true
-          });
 
-          return category
+            try {
+                
+                const category = new CategoryModel({name,description,image});
+                await category.save();
+                let catid = category._id;
+                let parentcatid = parentCat;
+                await CategoryModel.findOneAndUpdate({_id:parentcatid},{ "$push": { "subCategoryList": catid } }, {
+                  new: true
+                });
+      
+                return category 
+            } catch (error) {
+                throw new Error("Error: "+error)
+            }
+       
     }
 
     getAllSubCategoryByCategoryId=async(categoryId:String)=>{
@@ -28,14 +36,30 @@ export default class CategoryService{
         }
         const subCategoryIds=category[0].subCategoryList;
         const subCategory=await CategoryModel.find({_id:subCategoryIds});
-        console.log(subCategory)
         return subCategory
     }
 
-    createCategory=async(name:String,description:String)=>{
-        const category = new CategoryModel({name,description,isCategory:true});
-        await category.save();
-        return category;
+    createCategory=async(name:String,description:String,image:String)=>{
+          try { 
+            const validImage=[];
+            if (await isImageUrl(image)) {
+                console.log("true")
+                validImage.push(image);
+              }
+              console.log("false")
+          if (validImage.length === 0) {
+                throw new Error("No valid image URLs provided.");
+              }
+
+            const category = new CategoryModel({name,description,isCategory:true,image:validImage[0]});
+            await category.save();
+            return category;
+                
+          } catch (error) {
+            throw new Error(`Error ${error}`)
+          }     
+  
+
     }
     getAllCategory = async()=>{
         const result =await CategoryModel.find({isCategory:true}).populate("productList");

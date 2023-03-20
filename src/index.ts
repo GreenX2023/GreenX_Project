@@ -23,10 +23,8 @@ const main = async () =>{
         graphiql:true,
     }));
 
-    mongoLocal()
-    
+    mongoLocal()  
     app.get("/",(_req,res)=> res.send("Server is working"))
-
     app.listen(PORT, () => console.log(`Server running on port : ${PORT}`))
 
 }

@@ -83,6 +83,10 @@ __decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], CreateProductInput.prototype, "categoryID", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => [String], { nullable: true }),
+    __metadata("design:type", Array)
+], CreateProductInput.prototype, "images", void 0);
 CreateProductInput = __decorate([
     (0, type_graphql_1.InputType)()
 ], CreateProductInput);

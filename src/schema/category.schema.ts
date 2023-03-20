@@ -13,7 +13,7 @@ export default class Category{
     description: string    
 
     @Field(()=>String,{nullable: true})
-    image: string      
+    image: string[]      
 
     @Field(()=>[Product],{nullable: true})
     productList:Array<Product>
