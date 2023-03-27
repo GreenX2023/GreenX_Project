@@ -20,6 +20,7 @@ const UserModel = new mongoose_1.Schema({
     role: {
         type: String,
         required: [true, 'Role is required.'],
+        default: "user",
         validate: roleValidator
     },
     name: {
@@ -29,7 +30,6 @@ const UserModel = new mongoose_1.Schema({
     },
     email: {
         type: String,
-        required: [true, 'Email is required.'],
         unique: true
     },
     password: {
@@ -38,21 +38,30 @@ const UserModel = new mongoose_1.Schema({
     },
     contactnum: {
         type: String,
-        required: [true, 'Contact number is required.']
+        required: [true, 'Contact number is required.'],
+        unique: true
     },
     bio: {
         type: String,
-        required: [true, 'Bio is required.']
     },
     address: {
-        type: String,
-        required: [true, 'Address is required.']
+        type: String
     },
     products: [{ type: 'ObjectId', ref: 'Product' }],
     bookmarks: [{ type: 'ObjectId', ref: 'Product' }],
+    location: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            default: 'Point'
+        },
+        coordinates: {
+            type: [Number],
+            required: true,
+        }
+    },
     token: {
         type: String,
-        required: true
     }
 });
 // 3. Create a Model.

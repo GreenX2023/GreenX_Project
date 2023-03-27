@@ -1,5 +1,5 @@
 const CategoryModel = require('../models/Category.model')
-import { isImageUrl } from "../helper/isimage.cloudinary";
+const uploadImage = require("../helper/cloudinary.upload")
 
 export default class CategoryService{
 
@@ -41,16 +41,11 @@ export default class CategoryService{
 
     createCategory=async(name:String,description:String,image:String)=>{
           try { 
-            const validImage=[];
-            if (await isImageUrl(image)) {
-                console.log("true")
-                validImage.push(image);
-              }
-              console.log("false")
-          if (validImage.length === 0) {
+            const validImage:any=[];
+            if (validImage.length === 0) {
                 throw new Error("No valid image URLs provided.");
               }
-
+            uploadImage(image)
             const category = new CategoryModel({name,description,isCategory:true,image:validImage[0]});
             await category.save();
             return category;

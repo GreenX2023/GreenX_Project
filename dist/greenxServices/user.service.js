@@ -16,70 +16,129 @@ class UserService {
                 throw new Error(error);
             }
         };
-        this.register = async (input) => {
-            const hashedPassword = await (0, bcrypt_1.hash)(input.password, 12);
-            const new_user = new UserModel({
-                role: input.role,
-                name: input.name,
-                email: input.email,
-                bio: input.bio,
-                address: input.address,
-                contactnum: input.contactnum,
-                password: hashedPassword
-            });
-            await new_user.save();
-            return new_user;
+        this.getNearByProductByUserLocation = async (latitude, longitude) => {
+            try {
+                const users = await UserModel.find({
+                    location: {
+                        $nearSphere: {
+                            $geometry: {
+                                type: 'Point',
+                                coordinates: [longitude, latitude],
+                            },
+                            $maxDistance: 30000, // 30km in meters
+                        },
+                    },
+                });
+                console.log(users);
+                return users;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
         };
-        this.login = async (email, password) => {
-            const existingUser = await UserModel.findOne({ email });
-            if (!existingUser) {
-                throw new Error("Invalid login");
+        this.register = async (input) => {
+            try {
+                console.log(input.location.type);
+                const hashedPassword = await (0, bcrypt_1.hash)(input.password, 12);
+                const new_user = new UserModel({
+                    name: input.name,
+                    email: input.email,
+                    contactnum: input.contactnum,
+                    password: hashedPassword,
+                    location: input.location
+                });
+                await new_user.save();
+                return new_user;
             }
-            const passwordValid = await (0, bcrypt_1.compare)(password, existingUser.password);
-            if (!passwordValid) {
-                throw new Error("Invalid login");
+            catch (error) {
+                throw new Error(error);
             }
-            const token = (0, jsonwebtoken_1.sign)({ userId: existingUser.id, userRole: existingUser.role }, process.env.JWT_SECRET, {
-                expiresIn: "1d",
-            });
-            await UserModel.findOneAndUpdate({ token }, { email });
-            return token;
+        };
+        this.login = async (contactnum, password) => {
+            try {
+                const existingUser = await UserModel.findOne({ contactnum });
+                if (!existingUser) {
+                    throw new Error("Invalid login");
+                }
+                const passwordValid = await (0, bcrypt_1.compare)(password, existingUser.password);
+                if (!passwordValid) {
+                    throw new Error("Invalid login");
+                }
+                const token = (0, jsonwebtoken_1.sign)({ userId: existingUser.id, userRole: existingUser.role }, process.env.JWT_SECRET, {
+                    expiresIn: "1d",
+                });
+                await UserModel.findOneAndUpdate({ token }, { contactnum });
+                return token;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
         };
         this.updateBookmarksAdd = async (userId, productId) => {
-            let bookmarkproduct = new ObjectId(`${productId}`);
-            let doc = await UserModel.findOneAndUpdate({ _id: userId }, { "$push": { "bookmarks": bookmarkproduct } }, {
-                new: true
-            });
-            return doc;
+            try {
+                let bookmarkproduct = new ObjectId(`${productId}`);
+                let doc = await UserModel.findOneAndUpdate({ _id: userId }, { "$push": { "bookmarks": bookmarkproduct } }, {
+                    new: true
+                });
+                return doc;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
         };
         this.updateBookmarksRemove = async (userId, productId) => {
-            let bookmarkproduct = new ObjectId(`${productId}`);
-            let doc = await UserModel.findOneAndUpdate({ _id: userId }, { "$pull": { "bookmarks": bookmarkproduct } }, {
-                new: true
-            });
-            return doc;
+            try {
+                let bookmarkproduct = new ObjectId(`${productId}`);
+                let doc = await UserModel.findOneAndUpdate({ _id: userId }, { "$pull": { "bookmarks": bookmarkproduct } }, {
+                    new: true
+                });
+                return doc;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
         };
         this.getAllUsers = async () => {
-            const result = await UserModel.find({}).populate('products');
-            console.log(result);
-            if (result) {
-                return result;
+            try {
+                const result = await UserModel.find({}).populate('products');
+                console.log(result);
+                if (result) {
+                    return result;
+                }
+                else {
+                    console.log('Error in getting users');
+                }
             }
-            else {
-                console.log('Error in getting users');
+            catch (error) {
+                throw new Error(error);
             }
         };
         this.getUserById = async (userId) => {
-            const result = await UserModel.findOne({ _id: userId });
-            return result;
+            try {
+                const result = await UserModel.findOne({ _id: userId });
+                return result;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
         };
         this.getSellerProducts = async (sellerID) => {
-            const user = await UserModel.find({ _id: sellerID }).populate('products');
-            return user[0].products;
+            try {
+                const user = await UserModel.find({ _id: sellerID }).populate('products');
+                return user[0].products;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
         };
         this.getBookmarksForUser = async (userId) => {
-            const user = await UserModel.find({ _id: userId }).populate('bookmarks');
-            return user[0].bookmarks;
+            try {
+                const user = await UserModel.find({ _id: userId }).populate('bookmarks');
+                return user[0].bookmarks;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
         };
     }
 }

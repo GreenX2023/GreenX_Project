@@ -1,6 +1,16 @@
 import { Field,ObjectType,InputType } from "type-graphql";
 import { Product } from "./product.schema";
 
+
+@ObjectType()
+class Location {
+  @Field(() => String)
+  type: "Point";
+
+  @Field(() => [Number])
+  coordinates: [number, number];
+}
+
 @ObjectType()
 export default class User{
     @Field(() => String,{nullable: true})
@@ -27,48 +37,42 @@ export default class User{
     @Field(() => String,{nullable: true})
     bio: string
 
-    @Field(()=>[Product])
+    @Field(()=>[Product],{nullable: true})
     products:Array<Product>
 
-    @Field(()=>[Product])
+    @Field(()=>[Product],{nullable: true})
     bookmarks:Array<Product>
 
-    @Field(()=>String)
-    location!: {
-        type: 'Point';
-        coordinates: [number, number];
-      };
+    @Field(()=>Location,{nullable: true})
+    location:Location
 
 }
 
 @InputType()
+class LocationInput {
+  @Field(() => String)
+  type!: "Point";
+
+  @Field(() => [Number])
+  coordinates!: [number, number];
+}
+
+@InputType()
 export class CreateUserInput{
-    @Field(()=>String)
-    role: string;
+   
+    @Field(()=>String,{ nullable: true })
+    name!: string;
 
-    @Field(()=>String)
-    name: string;
+    @Field(()=>String,{ nullable: true })
+    email?: string;
 
-    @Field(()=>String)
-    email: string;
+    @Field(()=>String,{ nullable: true })
+    password!: string;
 
-    @Field(()=>String)
-    password: string;
+    @Field(()=>String,{ nullable: true })
+    contactnum!: string;
 
-    @Field(()=>String)
-    contactnum: string;
-
-    @Field(() => String)
-    address: string
-
-    @Field(() => String)
-    bio: string
-
-    @Field(()=>String)
-    location!: {
-        type: 'Point';
-        coordinates: [number, number];
-      };
-
+    @Field(()=>LocationInput,{ nullable: true })
+    location!:LocationInput
 
 }

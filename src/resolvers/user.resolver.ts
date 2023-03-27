@@ -29,10 +29,10 @@ export default class UserResolver{
 
     @Mutation(()=>String)
       login(
-        @Arg("email") email:string,
+        @Arg("contactnum") contactnum:string,
         @Arg("password") password:string )
         {
-           return user.login(email,password)
+           return user.login(contactnum,password)
         }
 
     @Mutation(()=>Boolean)

@@ -40,6 +40,7 @@ interface User {
             role:{
                 type:String,
                 required: [true, 'Role is required.'],
+                default:"user",
                 validate:roleValidator
             },
             name:{
@@ -49,7 +50,6 @@ interface User {
             },
             email:{
               type:String,
-              required: [true, 'Email is required.'],
               unique:true
             },
             password:{
@@ -58,15 +58,14 @@ interface User {
             },
             contactnum:{
                 type:String,
-                required: [true, 'Contact number is required.']
+                required: [true, 'Contact number is required.'],
+                unique:true
             },
             bio:{
                 type:String,
-                required: [true, 'Bio is required.']
             },
             address:{
-                type:String,
-                required: [true, 'Address is required.']
+                type:String
             },
 
             products:[{  type:'ObjectId', ref: 'Product' }],
@@ -77,7 +76,7 @@ interface User {
               type: {
                 type:String,
                 enum: ['Point'],
-                required: true,
+                default:'Point'
               },
               coordinates: {
                 type: [Number],
@@ -87,7 +86,6 @@ interface User {
               ,
             token:{
               type:String,
-              required:true
             }
     
   });

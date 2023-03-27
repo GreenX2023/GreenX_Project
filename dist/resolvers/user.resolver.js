@@ -33,8 +33,8 @@ let UserResolver = class UserResolver {
     register(input) {
         return user.register(input);
     }
-    login(email, password) {
-        return user.login(email, password);
+    login(contactnum, password) {
+        return user.login(contactnum, password);
     }
     logout() {
         return true;
@@ -64,6 +64,9 @@ let UserResolver = class UserResolver {
     getBookmarksForUser(userId) {
         return user.getBookmarksForUser(userId);
     }
+    getNearByProductByUserLocation(latitude, longitude) {
+        return user.getNearByProductByUserLocation(latitude, longitude);
+    }
 };
 __decorate([
     (0, type_graphql_1.Mutation)(() => user_schema_1.default),
@@ -82,7 +85,7 @@ __decorate([
 ], UserResolver.prototype, "register", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => String),
-    __param(0, (0, type_graphql_1.Arg)("email")),
+    __param(0, (0, type_graphql_1.Arg)("contactnum")),
     __param(1, (0, type_graphql_1.Arg)("password")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
@@ -145,6 +148,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "getBookmarksForUser", null);
+__decorate([
+    (0, type_graphql_1.Query)(() => [product_schema_1.Product]),
+    __param(0, (0, type_graphql_1.Arg)('latitude')),
+    __param(1, (0, type_graphql_1.Arg)('longitude')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", void 0)
+], UserResolver.prototype, "getNearByProductByUserLocation", null);
 UserResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], UserResolver);

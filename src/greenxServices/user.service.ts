@@ -39,31 +39,30 @@ export default class UserService{
         }
        
     }
+
     register=async(input:CreateUserInput)=>{
         try {
+            console.log(input.location.type)
             const hashedPassword=await hash(input.password,12);
             const new_user=new UserModel({
-                    role:input.role,
                     name:input.name,
                     email:input.email,
-                    bio:input.bio,
-                    address:input.address,
                     contactnum:input.contactnum,
-                    password:hashedPassword
+                    password:hashedPassword,
+                    location:input.location
             })
     
             await new_user.save()
             return new_user
         } catch (error) {
             throw new Error(error)
-        }
-       
+        }   
        
     }
-    login=async(email:string,password:string)=>{
+    login=async(contactnum:string,password:string)=>{
 
         try {
-            const existingUser=await UserModel.findOne({email}
+            const existingUser=await UserModel.findOne({contactnum}
                 )
                 if(!existingUser){
                     throw new Error("Invalid login");
@@ -76,7 +75,7 @@ export default class UserService{
                     expiresIn: "1d",
                   });
         
-                  await UserModel.findOneAndUpdate({token},{email})
+                  await UserModel.findOneAndUpdate({token},{contactnum})
                   return token
         } catch (error) {
             throw new Error(error)
