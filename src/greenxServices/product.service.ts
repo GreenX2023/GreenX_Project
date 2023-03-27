@@ -1,26 +1,26 @@
 const ProductModel = require('../models/Product.model')
 const UserModel = require('../models/User.model')
 const CategoryModel = require('../models/Category.model')
-const cloudinary=require('../helper/cloudinary.upload')
+const { uploadImage } = require("../helper/cloudinary.upload");
 
 
 
 export default class ProductService{
   createProduct = async (input: any) =>{
+    try {
     const {name,description,price,quantity,location,sellerID,categoryID,images}=input;
-
     const uploadimages:string[]=await Promise.all(
       images.map(async(image:any)=>{
 
         try {
-          const result= await cloudinary.uploader.upload(image);
-          return result.url;
+          const photoUrl = image && (await uploadImage(image));
+          return photoUrl;
         } catch (error) {
           throw new Error(`Error uploading image: ${error.message}`)
         }     
 
       })
-    ) ||["https://liftlearning.com/wp-content/uploads/2020/09/default-image.png"]
+    ) 
 
     if(input.sellerID.length!=24 || input.categoryID.length!=24){
       throw new Error("Please provide valid seller and Customer ID");
@@ -58,6 +58,9 @@ export default class ProductService{
         new: true
       });
     return product
+    } catch (error) {
+      throw new Error(error)
+    }
 }
 
 

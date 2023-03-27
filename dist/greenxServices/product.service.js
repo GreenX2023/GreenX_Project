@@ -3,52 +3,57 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ProductModel = require('../models/Product.model');
 const UserModel = require('../models/User.model');
 const CategoryModel = require('../models/Category.model');
-const cloudinary = require('../helper/cloudinary.upload');
+const { uploadImage } = require("../helper/cloudinary.upload");
 class ProductService {
     constructor() {
         this.createProduct = async (input) => {
-            const { name, description, price, quantity, location, sellerID, categoryID, images } = input;
-            const uploadimages = await Promise.all(images.map(async (image) => {
-                try {
-                    const result = await cloudinary.uploader.upload(image);
-                    return result.url;
+            try {
+                const { name, description, price, quantity, location, sellerID, categoryID, images } = input;
+                const uploadimages = await Promise.all(images.map(async (image) => {
+                    try {
+                        const photoUrl = image && (await uploadImage(image));
+                        return photoUrl;
+                    }
+                    catch (error) {
+                        throw new Error(`Error uploading image: ${error.message}`);
+                    }
+                }));
+                if (input.sellerID.length != 24 || input.categoryID.length != 24) {
+                    throw new Error("Please provide valid seller and Customer ID");
                 }
-                catch (error) {
-                    throw new Error(`Error uploading image: ${error.message}`);
+                const user = await UserModel.find({ _id: input.sellerID });
+                const category = await CategoryModel.find({ _id: input.categoryID });
+                if (user.length == 0) {
+                    throw new Error("Please provide valid seller ID");
                 }
-            })) || ["https://liftlearning.com/wp-content/uploads/2020/09/default-image.png"];
-            if (input.sellerID.length != 24 || input.categoryID.length != 24) {
-                throw new Error("Please provide valid seller and Customer ID");
+                if (category.length == 0) {
+                    throw new Error("Please provide valid Category ID");
+                }
+                const product = new ProductModel({
+                    name,
+                    price,
+                    description,
+                    quantity,
+                    images: uploadimages,
+                    location,
+                    categoryID,
+                    sellerID
+                });
+                await product.save();
+                let sellerId = product.sellerID;
+                let productid = product._id;
+                let catid = product.categoryID;
+                await UserModel.findOneAndUpdate({ _id: sellerId }, { "$push": { "products": productid } }, {
+                    new: true
+                });
+                await CategoryModel.findOneAndUpdate({ _id: catid }, { "$push": { "productList": productid } }, {
+                    new: true
+                });
+                return product;
             }
-            const user = await UserModel.find({ _id: input.sellerID });
-            const category = await CategoryModel.find({ _id: input.categoryID });
-            if (user.length == 0) {
-                throw new Error("Please provide valid seller ID");
+            catch (error) {
+                throw new Error(error);
             }
-            if (category.length == 0) {
-                throw new Error("Please provide valid Category ID");
-            }
-            const product = new ProductModel({
-                name,
-                price,
-                description,
-                quantity,
-                images: uploadimages,
-                location,
-                categoryID,
-                sellerID
-            });
-            await product.save();
-            let sellerId = product.sellerID;
-            let productid = product._id;
-            let catid = product.categoryID;
-            await UserModel.findOneAndUpdate({ _id: sellerId }, { "$push": { "products": productid } }, {
-                new: true
-            });
-            await CategoryModel.findOneAndUpdate({ _id: catid }, { "$push": { "productList": productid } }, {
-                new: true
-            });
-            return product;
         };
         this.getAllProducts = async () => {
             const result = await ProductModel.find({});

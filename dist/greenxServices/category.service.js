@@ -13,7 +13,8 @@ class CategoryService {
                 throw new Error("Please Enter Valid CategoryID");
             }
             try {
-                const category = new CategoryModel({ name, description, image });
+                const photoUrl = image && (await uploadImage(image));
+                const category = new CategoryModel({ name, description, image: photoUrl });
                 await category.save();
                 let catid = category._id;
                 let parentcatid = parentCat;

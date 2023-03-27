@@ -7,24 +7,24 @@ cloudinary.config({
 });
 exports.uploadImage = async (photo) => {
     try {
-        console.log("khdsbfjksd");
         const result = await cloudinary.uploader
             .upload(photo, {
             allowed_formats: ["jpg", "png"],
             public_id: "",
-            folder: "twitter",
+            folder: "greenx",
         })
             .then((res) => {
             return res.secure_url;
         })
             .catch((e) => {
-            console.log("error lol", e);
-            throw new Error(e === null || e === void 0 ? void 0 : e.message);
+            console.log(e);
+            throw new Error("Image upload failed " + e);
         });
         return result;
     }
     catch (e) {
-        throw new Error(e);
+        console.log(e);
+        throw new Error("Image upload failed");
     }
 };
 //# sourceMappingURL=cloudinary.upload.js.map

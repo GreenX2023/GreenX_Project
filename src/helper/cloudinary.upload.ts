@@ -20,10 +20,12 @@ cloudinary.config({
           return res.secure_url;
         })
         .catch((e:any) => {
-          throw new Error("Image upload failed");
+          console.log(e)
+          throw new Error("Image upload failed "+e);
         });
       return result;
     } catch (e) {
-      throw new Error(e);
+      console.log(e)
+      throw new Error("Image upload failed");
     }
   }
