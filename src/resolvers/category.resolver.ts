@@ -24,7 +24,7 @@ export default class CategoryResolver{
         @Arg('name') name: String ,
         @Arg('parentCat') parentCat: String,
         @Arg('description') description: String,
-        @Arg('image') image:String
+        @Arg('image') !image:String
         ){
         return category.createSubCategory(name,parentCat,description,image)
     }

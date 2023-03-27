@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const CategoryModel = require('../models/Category.model');
-const uploadImage = require("../helper/cloudinary.upload");
+const { uploadImage } = require("../helper/cloudinary.upload");
 class CategoryService {
     constructor() {
         this.createSubCategory = async (name, parentCat, description, image) => {
@@ -37,12 +37,8 @@ class CategoryService {
         };
         this.createCategory = async (name, description, image) => {
             try {
-                const validImage = [];
-                if (validImage.length === 0) {
-                    throw new Error("No valid image URLs provided.");
-                }
-                uploadImage(image);
-                const category = new CategoryModel({ name, description, isCategory: true, image: validImage[0] });
+                const photoUrl = image && (await uploadImage(image));
+                const category = new CategoryModel({ name, description, isCategory: true, image: photoUrl });
                 await category.save();
                 return category;
             }

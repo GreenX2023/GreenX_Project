@@ -14,14 +14,13 @@ cloudinary.config({
         .upload(photo, {
           allowed_formats: ["jpg", "png"],
           public_id: "",
-          folder: "twitter",
+          folder: "greenx",
         })
         .then((res:any) => {
           return res.secure_url;
         })
         .catch((e:any) => {
-          console.log("error lol", e);
-          throw new Error(e?.message);
+          throw new Error("Image upload failed");
         });
       return result;
     } catch (e) {

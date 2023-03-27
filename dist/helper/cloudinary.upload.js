@@ -7,6 +7,7 @@ cloudinary.config({
 });
 exports.uploadImage = async (photo) => {
     try {
+        console.log("khdsbfjksd");
         const result = await cloudinary.uploader
             .upload(photo, {
             allowed_formats: ["jpg", "png"],

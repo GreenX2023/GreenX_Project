@@ -1,5 +1,5 @@
 const CategoryModel = require('../models/Category.model')
-const uploadImage = require("../helper/cloudinary.upload")
+const { uploadImage } = require("../helper/cloudinary.upload");
 
 export default class CategoryService{
 
@@ -13,8 +13,8 @@ export default class CategoryService{
             }
 
             try {
-                
-                const category = new CategoryModel({name,description,image});
+                const photoUrl = image && (await uploadImage(image));
+                const category = new CategoryModel({name,description,image:photoUrl});
                 await category.save();
                 let catid = category._id;
                 let parentcatid = parentCat;
@@ -41,12 +41,8 @@ export default class CategoryService{
 
     createCategory=async(name:String,description:String,image:String)=>{
           try { 
-            const validImage:any=[];
-            if (validImage.length === 0) {
-                throw new Error("No valid image URLs provided.");
-              }
-            uploadImage(image)
-            const category = new CategoryModel({name,description,isCategory:true,image:validImage[0]});
+            const photoUrl = image && (await uploadImage(image));
+            const category = new CategoryModel({name,description,isCategory:true,image:photoUrl});
             await category.save();
             return category;
                 
