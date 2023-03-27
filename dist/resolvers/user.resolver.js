@@ -65,7 +65,7 @@ let UserResolver = class UserResolver {
         return user.getBookmarksForUser(userId);
     }
     getNearByProductByUserLocation(latitude, longitude) {
-        return user.getNearByProductByUserLocation(latitude, longitude);
+        return user.getNearByProductByUserLocation(longitude, latitude);
     }
 };
 __decorate([

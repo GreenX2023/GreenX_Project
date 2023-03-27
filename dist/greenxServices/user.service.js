@@ -16,23 +16,27 @@ class UserService {
                 throw new Error(error);
             }
         };
-        this.getNearByProductByUserLocation = async (latitude, longitude) => {
+        this.getNearByProductByUserLocation = async (longitude, latitude) => {
             try {
+                let productList = [];
                 const users = await UserModel.find({
                     location: {
                         $nearSphere: {
                             $geometry: {
                                 type: 'Point',
-                                coordinates: [longitude, latitude],
+                                coordinates: [latitude, longitude],
                             },
                             $maxDistance: 30000, // 30km in meters
                         },
                     },
-                });
-                console.log(users);
-                return users;
+                }).hint({ location: '2dsphere' }).populate('products');
+                for (let i = 0; i < users.length; i++) {
+                    productList = productList.concat(users[i].products);
+                }
+                return productList;
             }
             catch (error) {
+                console.log(error);
                 throw new Error(error);
             }
         };

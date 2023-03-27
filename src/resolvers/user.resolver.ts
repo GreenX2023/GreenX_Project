@@ -85,7 +85,7 @@ export default class UserResolver{
     }
     @Query(()=>[Product])
     getNearByProductByUserLocation(@Arg('latitude') latitude: number, @Arg('longitude') longitude: number){
-        return user.getNearByProductByUserLocation(latitude,longitude)
+        return user.getNearByProductByUserLocation(longitude,latitude)
     }
 
 }

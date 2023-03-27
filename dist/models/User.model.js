@@ -64,6 +64,8 @@ const UserModel = new mongoose_1.Schema({
         type: String,
     }
 });
-// 3. Create a Model.
+UserModel.index({ location: '2dsphere' });
+// // 3. Create a Model.
+// Create a 2dsphere index on the location field
 module.exports = (0, mongoose_1.model)('User', UserModel);
 //# sourceMappingURL=User.model.js.map

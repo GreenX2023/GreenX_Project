@@ -17,24 +17,29 @@ export default class UserService{
        
     }
 
-    getNearByProductByUserLocation=async(latitude:number,longitude:number)=>{
+    getNearByProductByUserLocation=async(longitude:number,latitude:number)=>{
 
         try {
+           
+            let productList:any=[]
             const users = await UserModel.find({
                 location: {
                   $nearSphere: {
                     $geometry: {
                       type: 'Point',
-                      coordinates: [longitude, latitude],
+                      coordinates: [latitude, longitude],
                     },
                     $maxDistance: 30000, // 30km in meters
                   },
                 },
-              });    
-              console.log(users)
+              }).hint({ location: '2dsphere' }).populate('products');    
 
-              return users;
+              for(let i=0;i<users.length;i++){
+               productList= productList.concat(users[i].products)
+              }
+              return productList;
         } catch (error) {
+            console.log(error)
             throw new Error(error)
         }
        
