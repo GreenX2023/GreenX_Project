@@ -6,10 +6,6 @@ import { UseMiddleware } from "type-graphql";
 import UserService from "../greenxServices/user.service";
 import { authMiddleware } from "../middleware/authmiddleware";
 
-// import UserService from "../greenxServices/user.service";
-// const {UserModel} = require('../models/User.model')
-//decorator helps us to extends the functionality of classes and methods
-
 
 let user=new UserService()
 
@@ -56,14 +52,6 @@ export default class UserResolver{
         return user.updateBookmarksRemove(userId,productId)
     }
 
-    @Query(()=>User)
-    me(){
-        return{
-            _id:"123",
-            name:"Austin",
-            email:"a@gmail.com"
-        };
-    }
     @Query(()=>[User])
     getAllUsers(){
         return user.getAllUsers()
