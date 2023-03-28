@@ -39,6 +39,9 @@ let CategoryResolver = class CategoryResolver {
     createCategory(name, description, image) {
         return category.createCategory(name, description, image);
     }
+    updateCategory(name, description, image, categoryId) {
+        return category.updateCategory(name, description, image, categoryId);
+    }
 };
 __decorate([
     (0, type_graphql_1.Query)(() => [category_schema_1.default], { nullable: true }),
@@ -91,6 +94,19 @@ __decorate([
         String]),
     __metadata("design:returntype", void 0)
 ], CategoryResolver.prototype, "createCategory", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => category_schema_1.default, { nullable: true }),
+    __param(0, (0, type_graphql_1.Arg)('name', { nullable: true })),
+    __param(1, (0, type_graphql_1.Arg)('description', { nullable: true })),
+    __param(2, (0, type_graphql_1.Arg)('image', { nullable: true })),
+    __param(3, (0, type_graphql_1.Arg)('categoryId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String,
+        String,
+        String,
+        String]),
+    __metadata("design:returntype", void 0)
+], CategoryResolver.prototype, "updateCategory", null);
 CategoryResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], CategoryResolver);

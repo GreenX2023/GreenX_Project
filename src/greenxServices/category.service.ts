@@ -82,4 +82,34 @@ export default class CategoryService{
         }
     }
 
+    updateCategory=async(name:String,description:String,image:String,categoryId:String)=>{
+        try {
+            const category=await CategoryModel.findOne({
+            _id:categoryId,
+            isCategory:true
+        })
+        if(!category){
+            throw new Error('Please provide Valid Category ID')
+        }
+
+       let imageurl:any=undefined;
+       if(image){
+        imageurl = image && (await uploadImage(image));
+       }
+       const updateCategory=await CategoryModel.findOneAndUpdate({
+        _id:categoryId,
+        isCategory:true
+       },{
+        name,
+        description,
+        image:imageurl
+       },{
+        new: true
+      })
+       return updateCategory
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
 }

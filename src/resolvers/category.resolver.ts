@@ -52,4 +52,14 @@ export default class CategoryResolver{
         ){
         return category.createCategory(name,description,image)
     }
+
+    @Mutation(()=> Category,{nullable: true})
+    updateCategory(
+        @Arg('name',{ nullable: true }) name: String ,
+        @Arg('description',{ nullable: true }) description: String,
+        @Arg('image',{ nullable: true }) image:String,
+        @Arg('categoryId') categoryId:String
+        ){
+        return category.updateCategory(name,description,image,categoryId)
+    }
 }
