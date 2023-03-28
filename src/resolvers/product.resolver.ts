@@ -56,4 +56,11 @@ export default class ProductResolver{
     ){
         return product.updateProduct(productId,name,price,description,quantity)
     }
+
+    @Mutation(()=>String)
+    deleteProduct(
+        @Arg('productId') productId:String
+    ){
+        return product.deleteProduct(productId)
+    }
 }

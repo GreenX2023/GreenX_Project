@@ -145,6 +145,38 @@ class ProductService {
                 throw new Error(error);
             }
         };
+        this.deleteProduct = async (productID) => {
+            try {
+                const product = await ProductModel.findOne({
+                    _id: productID
+                });
+                if (!product) {
+                    throw new Error('Please provide valid productID');
+                }
+                const categoryId = product.categoryID;
+                const sellerID = product.sellerID;
+                await CategoryModel.findOneAndUpdate({
+                    _id: categoryId
+                }, {
+                    "$pull": { "productList": productID }
+                });
+                await UserModel.findOneAndUpdate({
+                    _id: sellerID
+                }, {
+                    "$pull": { "products": productID }
+                });
+                const deleteProduct = await ProductModel.deleteOne({
+                    _id: productID
+                });
+                if (deleteProduct.deletedCount == 1) {
+                    return "Deleted Successfully";
+                }
+                return "Deletion UnSuccessfull";
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        };
     }
 }
 exports.default = ProductService;

@@ -42,6 +42,9 @@ let ProductResolver = class ProductResolver {
     updateProduct(productId, name, price, description, quantity) {
         return product.updateProduct(productId, name, price, description, quantity);
     }
+    deleteProduct(productId) {
+        return product.deleteProduct(productId);
+    }
 };
 __decorate([
     (0, type_graphql_1.Query)(() => [product_schema_1.Product]),
@@ -97,6 +100,13 @@ __decorate([
     __metadata("design:paramtypes", [String, String, Number, String, String]),
     __metadata("design:returntype", void 0)
 ], ProductResolver.prototype, "updateProduct", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => String),
+    __param(0, (0, type_graphql_1.Arg)('productId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ProductResolver.prototype, "deleteProduct", null);
 ProductResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], ProductResolver);
