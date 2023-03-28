@@ -8,7 +8,7 @@ class ProductService {
     constructor() {
         this.createProduct = async (input) => {
             try {
-                const { name, description, price, quantity, location, sellerID, categoryID, images } = input;
+                const { name, description, price, quantity, sellerID, categoryID, images } = input;
                 const uploadimages = await Promise.all(images.map(async (image) => {
                     try {
                         const photoUrl = image && (await uploadImage(image));
@@ -35,7 +35,6 @@ class ProductService {
                     description,
                     quantity,
                     images: uploadimages,
-                    location,
                     categoryID,
                     sellerID
                 });
@@ -55,28 +54,74 @@ class ProductService {
                 throw new Error(error);
             }
         };
-        this.getAllProducts = async () => {
-            const result = await ProductModel.find({});
-            if (result) {
-                return result;
+        this.addImageInProduct = async (productID, image) => {
+            try {
+                const product = await ProductModel.findOne({ _id: productID });
+                if (!product) {
+                    throw new Error("Invalid Product ID");
+                }
+                const photoUrl = image && (await uploadImage(image));
+                const addNewImage = await ProductModel.findOneAndUpdate({ _id: productID }, { "$push": { "images": photoUrl } }, {
+                    new: true
+                });
+                return addNewImage;
             }
-            else {
-                throw new Error('Error in getting products');
+            catch (error) {
+                throw new Error(error);
+            }
+        };
+        this.removeImageFromProduct = async (productID, imageUrl) => {
+            try {
+                const product = await ProductModel.findOne({ _id: productID, images: imageUrl });
+                if (!product) {
+                    throw new Error("Please provide Valid productID and imageUrl");
+                }
+                const removeImage = await ProductModel.findOneAndUpdate({ _id: productID }, { "$pull": { "images": imageUrl } }, {
+                    new: true
+                });
+                return removeImage;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        };
+        this.getAllProducts = async () => {
+            try {
+                const result = await ProductModel.find({});
+                if (result) {
+                    return result;
+                }
+                else {
+                    throw new Error('Error in getting products');
+                }
+            }
+            catch (error) {
+                throw new Error('Error in getting products ' + error);
             }
         };
         this.getProductById = async (productID) => {
-            if (productID.length != 24) {
-                throw new Error("Product ID must be of Length 24");
+            try {
+                if (productID.length != 24) {
+                    throw new Error("Product ID must be of Length 24");
+                }
+                const result = await ProductModel.findOne({ _id: productID });
+                return result;
             }
-            const result = await ProductModel.findOne({ _id: productID });
-            return result;
+            catch (error) {
+                throw new Error('Error in getting product By Id ' + error);
+            }
         };
         this.getProductByName = async (productName) => {
-            if (productName.length == 0) {
-                throw new Error("Product Name is Empty");
+            try {
+                if (productName.length == 0) {
+                    throw new Error("Product Name is Empty");
+                }
+                const result = await ProductModel.findOne({ name: productName });
+                return result;
             }
-            const result = await ProductModel.findOne({ name: productName });
-            return result;
+            catch (error) {
+                throw new Error('Error in getting product By Name ' + error);
+            }
         };
     }
 }

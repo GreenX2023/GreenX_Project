@@ -29,5 +29,20 @@ export default class ProductResolver{
         return product.createProduct(input)
     }
 
+    @Mutation(()=>Product)
+    addImageInProduct(
+        @Arg('productID') productID: string,
+        @Arg('image') image: string
+    ){
+        return product.addImageInProduct(productID,image)
+    }
+
+    @Mutation(()=>Product)
+    removeImageFromProduct(
+        @Arg('productID') productID: string,
+        @Arg('imageUrl') imageUrl: string
+    ){
+        return product.removeImageFromProduct(productID,imageUrl)
+    }
     //get products based on user location if logged in (query) for home page
 }

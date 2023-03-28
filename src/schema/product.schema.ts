@@ -24,9 +24,6 @@ export class Product{
     images:Array<string>
 
     @Field(()=>String,{nullable: true})
-    location:string
-
-    @Field(()=>String,{nullable: true})
     sellerID:string
 
     @Field(()=>String,{nullable: true})
@@ -47,8 +44,6 @@ export class CreateProductInput{
     @Field(()=>String,{nullable: true})
     quantity: string;
 
-    @Field(()=>String,{nullable: true})
-    location:string
 
     @Field(()=>String,{nullable: true})
     sellerID: string;

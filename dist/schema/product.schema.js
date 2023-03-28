@@ -40,10 +40,6 @@ __decorate([
 __decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
-], Product.prototype, "location", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(() => String, { nullable: true }),
-    __metadata("design:type", String)
 ], Product.prototype, "sellerID", void 0);
 __decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
@@ -71,10 +67,6 @@ __decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], CreateProductInput.prototype, "quantity", void 0);
-__decorate([
-    (0, type_graphql_1.Field)(() => String, { nullable: true }),
-    __metadata("design:type", String)
-], CreateProductInput.prototype, "location", void 0);
 __decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)

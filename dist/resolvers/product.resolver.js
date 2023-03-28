@@ -32,6 +32,12 @@ let ProductResolver = class ProductResolver {
     createProduct(input) {
         return product.createProduct(input);
     }
+    addImageInProduct(productID, image) {
+        return product.addImageInProduct(productID, image);
+    }
+    removeImageFromProduct(productID, imageUrl) {
+        return product.removeImageFromProduct(productID, imageUrl);
+    }
 };
 __decorate([
     (0, type_graphql_1.Query)(() => [product_schema_1.Product]),
@@ -60,6 +66,22 @@ __decorate([
     __metadata("design:paramtypes", [product_schema_1.CreateProductInput]),
     __metadata("design:returntype", void 0)
 ], ProductResolver.prototype, "createProduct", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => product_schema_1.Product),
+    __param(0, (0, type_graphql_1.Arg)('productID')),
+    __param(1, (0, type_graphql_1.Arg)('image')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], ProductResolver.prototype, "addImageInProduct", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => product_schema_1.Product),
+    __param(0, (0, type_graphql_1.Arg)('productID')),
+    __param(1, (0, type_graphql_1.Arg)('imageUrl')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], ProductResolver.prototype, "removeImageFromProduct", null);
 ProductResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], ProductResolver);

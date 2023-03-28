@@ -45,11 +45,6 @@ const ProductSchema = new mongoose.Schema({
         type: [String],
         // required:true
     },
-    location: {
-        type: String,
-        validate: locationValidator,
-        required: [true, 'Location is required.']
-    },
     categoryID: {
         type: String,
         required: [true, 'Category is required.']
