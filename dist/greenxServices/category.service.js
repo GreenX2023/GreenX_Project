@@ -105,12 +105,10 @@ class CategoryService {
         };
         this.updateSubCategory = async (name, description, image, subCategoryId) => {
             try {
-                console.log("yoo");
                 const category = await CategoryModel.findOne({
                     _id: subCategoryId,
                     isCategory: false
                 });
-                console.log("ajdwyuhasd " + category);
                 if (!category) {
                     throw new Error('Please provide Valid subCategory ID');
                 }
