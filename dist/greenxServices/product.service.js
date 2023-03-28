@@ -123,6 +123,28 @@ class ProductService {
                 throw new Error('Error in getting product By Name ' + error);
             }
         };
+        this.updateProduct = async (productId, name, price, description, quantity) => {
+            try {
+                const product = await ProductModel.findOne({
+                    _id: productId
+                });
+                if (!product) {
+                    throw new Error('Please provide valid productID');
+                }
+                const productUpdate = await ProductModel.findOneAndUpdate({
+                    _id: productId
+                }, {
+                    name,
+                    price,
+                    description,
+                    quantity
+                });
+                return productUpdate;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        };
     }
 }
 exports.default = ProductService;

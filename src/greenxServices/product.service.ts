@@ -136,5 +136,28 @@ getProductByName = async(productName:any)=>{
 
 }
 
+updateProduct=async(productId:String,name:String,price:Number,description:String,quantity:String)=>{
+try {
+  const product=await ProductModel.findOne({
+    _id:productId
+  })
+  if(!product){
+    throw new Error('Please provide valid productID')
+  }
+
+  const productUpdate=await ProductModel.findOneAndUpdate({
+    _id:productId
+  },{
+    name,
+    price,
+    description,
+    quantity
+  })
+  return productUpdate
+} catch (error) {
+  throw new Error(error)
+}
+}
+
 }
 

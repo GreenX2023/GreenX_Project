@@ -38,6 +38,10 @@ let ProductResolver = class ProductResolver {
     removeImageFromProduct(productID, imageUrl) {
         return product.removeImageFromProduct(productID, imageUrl);
     }
+    //get products based on user location if logged in (query) for home page
+    updateProduct(productId, name, price, description, quantity) {
+        return product.updateProduct(productId, name, price, description, quantity);
+    }
 };
 __decorate([
     (0, type_graphql_1.Query)(() => [product_schema_1.Product]),
@@ -82,6 +86,17 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
 ], ProductResolver.prototype, "removeImageFromProduct", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => product_schema_1.Product),
+    __param(0, (0, type_graphql_1.Arg)('productId', { nullable: true })),
+    __param(1, (0, type_graphql_1.Arg)('name', { nullable: true })),
+    __param(2, (0, type_graphql_1.Arg)('price', { nullable: true })),
+    __param(3, (0, type_graphql_1.Arg)('description', { nullable: true })),
+    __param(4, (0, type_graphql_1.Arg)('quantity', { nullable: true })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, Number, String, String]),
+    __metadata("design:returntype", void 0)
+], ProductResolver.prototype, "updateProduct", null);
 ProductResolver = __decorate([
     (0, type_graphql_1.Resolver)()
 ], ProductResolver);

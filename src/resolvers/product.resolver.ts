@@ -45,4 +45,15 @@ export default class ProductResolver{
         return product.removeImageFromProduct(productID,imageUrl)
     }
     //get products based on user location if logged in (query) for home page
+
+    @Mutation(()=>Product)
+    updateProduct(
+        @Arg('productId',{ nullable: true }) productId: string,
+        @Arg('name',{ nullable: true }) name: string,
+        @Arg('price',{ nullable: true }) price: Number,
+        @Arg('description',{ nullable: true }) description: string,
+        @Arg('quantity',{ nullable: true }) quantity: string,
+    ){
+        return product.updateProduct(productId,name,price,description,quantity)
+    }
 }
