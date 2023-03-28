@@ -62,4 +62,15 @@ export default class CategoryResolver{
         ){
         return category.updateCategory(name,description,image,categoryId)
     }
+
+  
+    @Mutation(()=> Category,{nullable: true})
+    updateSubCategory(
+        @Arg('name',{ nullable: true }) name: String ,
+        @Arg('description',{ nullable: true }) description: String,
+        @Arg('image',{ nullable: true }) image:String,
+        @Arg('subCategoryId') subCategoryId:String
+        ){
+        return category.updateSubCategory(name,description,image,subCategoryId)
+    }
 }

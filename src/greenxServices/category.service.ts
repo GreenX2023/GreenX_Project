@@ -112,4 +112,35 @@ export default class CategoryService{
         }
     }
 
+    updateSubCategory=async(name:String,description:String,image:String,subCategoryId:String)=>{
+        try {
+          
+            const category=await CategoryModel.findOne({
+            _id:subCategoryId,
+            isCategory:false
+        })
+        if(!category){
+            throw new Error('Please provide Valid subCategory ID')
+        }
+
+       let imageurl:any=undefined;
+       if(image){
+        imageurl = image && (await uploadImage(image));
+       }
+       const updateCategory=await CategoryModel.findOneAndUpdate({
+        _id:subCategoryId,
+        isCategory:false
+       },{
+        name,
+        description,
+        image:imageurl
+       },{
+        new: true
+      })
+       return updateCategory
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
 }

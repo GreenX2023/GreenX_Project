@@ -103,6 +103,37 @@ class CategoryService {
                 throw new Error(error);
             }
         };
+        this.updateSubCategory = async (name, description, image, subCategoryId) => {
+            try {
+                console.log("yoo");
+                const category = await CategoryModel.findOne({
+                    _id: subCategoryId,
+                    isCategory: false
+                });
+                console.log("ajdwyuhasd " + category);
+                if (!category) {
+                    throw new Error('Please provide Valid subCategory ID');
+                }
+                let imageurl = undefined;
+                if (image) {
+                    imageurl = image && (await uploadImage(image));
+                }
+                const updateCategory = await CategoryModel.findOneAndUpdate({
+                    _id: subCategoryId,
+                    isCategory: false
+                }, {
+                    name,
+                    description,
+                    image: imageurl
+                }, {
+                    new: true
+                });
+                return updateCategory;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        };
     }
 }
 exports.default = CategoryService;
