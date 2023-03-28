@@ -1,3 +1,5 @@
+
+const ProductSchema=require('../models/Product.model')
 const CategoryModel = require('../models/Category.model')
 const { uploadImage } = require("../helper/cloudinary.upload");
 
@@ -143,4 +145,38 @@ export default class CategoryService{
         }
     }
 
+    deleteCategory=async(CatgoryID:String)=>{
+        try {
+            const category=await CategoryModel.findOne({
+                _id:CatgoryID,
+                isCategory:true
+            })
+            if(!category){
+                throw new Error('Please enter valid CategoryID')
+            }
+            const subCategoryList=category.subCategoryList
+            const productList=category.productList
+    
+            await ProductSchema.deleteMany({
+                _id:productList
+            })
+    
+            await CategoryModel.deleteMany({
+                _id:subCategoryList,
+                isCategory:false
+            })
+            const categoryDelete=await CategoryModel.deleteMany({
+                _id:CatgoryID,
+                isCategory:true
+            })
+            if(categoryDelete.deletedCount==1){
+                return "Deleted Succesfully"
+            }
+            return "Deleted Unsuccesfully"
+        
+        } catch (error) {
+            throw new Error(error)
+        }
+       
+    }
 }

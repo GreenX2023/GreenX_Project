@@ -73,4 +73,11 @@ export default class CategoryResolver{
         ){
         return category.updateSubCategory(name,description,image,subCategoryId)
     }
+
+    @Mutation(()=> String,{nullable: true})
+    deleteCategory(
+        @Arg('categoryId') categoryId:String
+        ){
+        return category.deleteCategory(categoryId)
+    }
 }

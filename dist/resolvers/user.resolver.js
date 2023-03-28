@@ -22,9 +22,6 @@ const product_schema_1 = require("../schema/product.schema");
 const type_graphql_2 = require("type-graphql");
 const user_service_1 = __importDefault(require("../greenxServices/user.service"));
 const authmiddleware_1 = require("../middleware/authmiddleware");
-// import UserService from "../greenxServices/user.service";
-// const {UserModel} = require('../models/User.model')
-//decorator helps us to extends the functionality of classes and methods
 let user = new user_service_1.default();
 let UserResolver = class UserResolver {
     createUser(input) {
@@ -44,13 +41,6 @@ let UserResolver = class UserResolver {
     }
     updateBookmarksRemove(userId, productId) {
         return user.updateBookmarksRemove(userId, productId);
-    }
-    me() {
-        return {
-            _id: "123",
-            name: "Austin",
-            email: "a@gmail.com"
-        };
     }
     getAllUsers() {
         return user.getAllUsers();
@@ -115,12 +105,6 @@ __decorate([
         String]),
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "updateBookmarksRemove", null);
-__decorate([
-    (0, type_graphql_1.Query)(() => user_schema_1.default),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], UserResolver.prototype, "me", null);
 __decorate([
     (0, type_graphql_1.Query)(() => [user_schema_1.default]),
     __metadata("design:type", Function),
