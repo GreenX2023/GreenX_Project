@@ -80,4 +80,11 @@ export default class CategoryResolver{
         ){
         return category.deleteCategory(categoryId)
     }
+
+    @Mutation(()=> String,{nullable: true})
+    deleteSubCategory(
+        @Arg('subCategoryId') subCategoryId:String
+        ){
+        return category.deleteSubCategory(subCategoryId)
+    }
 }

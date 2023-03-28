@@ -145,6 +145,36 @@ export default class CategoryService{
         }
     }
 
+    deleteSubCategory=async(subCategoryId:String)=>{
+        try {
+            const category=await CategoryModel.findOne({
+                _id:subCategoryId,
+                isCategory:false
+            })
+            if(!category){
+                throw new Error('Please enter valid subCategoryID')
+            }
+            const productList=category.productList
+    
+            await ProductSchema.deleteMany({
+                _id:productList
+            })
+    
+           
+            const subCategoryDelete=await CategoryModel.deleteMany({
+                _id:subCategoryId,
+                isCategory:false
+            })
+            if(subCategoryDelete.deletedCount==1){
+                return "Deleted Succesfully"
+            }
+            return "Deleted Unsuccesfully"
+        
+        } catch (error) {
+            throw new Error(error)
+        }
+       
+    }
     deleteCategory=async(CatgoryID:String)=>{
         try {
             const category=await CategoryModel.findOne({
