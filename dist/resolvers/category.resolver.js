@@ -27,6 +27,12 @@ let CategoryResolver = class CategoryResolver {
     getAllSubCategoryByCategoryId(categoryId) {
         return category.getAllSubCategoryByCategoryId(categoryId);
     }
+    getCategoryById(categoryId) {
+        return category.getCategoryById(categoryId);
+    }
+    getSubCategoryById(subCategoryId) {
+        return category.getSubCategoryById(subCategoryId);
+    }
     createSubCategory(name, parentCat, description, image) {
         return category.createSubCategory(name, parentCat, description, image);
     }
@@ -47,6 +53,20 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], CategoryResolver.prototype, "getAllSubCategoryByCategoryId", null);
+__decorate([
+    (0, type_graphql_1.Query)(() => [category_schema_1.default], { nullable: true }),
+    __param(0, (0, type_graphql_1.Arg)('categoryId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], CategoryResolver.prototype, "getCategoryById", null);
+__decorate([
+    (0, type_graphql_1.Query)(() => [category_schema_1.default], { nullable: true }),
+    __param(0, (0, type_graphql_1.Arg)('subCategoryId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], CategoryResolver.prototype, "getSubCategoryById", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => category_schema_1.default, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('name')),

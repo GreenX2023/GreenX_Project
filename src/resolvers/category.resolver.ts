@@ -19,6 +19,21 @@ export default class CategoryResolver{
         return category.getAllSubCategoryByCategoryId(categoryId)  
     }
 
+    @Query(()=>[Category],{nullable: true})
+    getCategoryById(
+        @Arg('categoryId') categoryId: String
+    ){
+        return category.getCategoryById(categoryId)
+    }
+
+    @Query(()=>[Category],{nullable: true})
+    getSubCategoryById(
+        @Arg('subCategoryId') subCategoryId: String
+    ){
+        return category.getSubCategoryById(subCategoryId)
+    }
+
+
     @Mutation(()=> Category,{nullable: true})
     createSubCategory(
         @Arg('name') name: String ,

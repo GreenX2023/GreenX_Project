@@ -29,6 +29,26 @@ export default class CategoryService{
        
     }
 
+    getCategoryById=async(categoryId:String)=>{
+        try {
+            const category=await CategoryModel.find({_id:categoryId,isCategory:true});
+             return category
+        } catch (error) {
+            throw new Error(error)
+        }
+        
+    }
+
+    getSubCategoryById=async(subCategoryId:String)=>{
+        try {
+            const category=await CategoryModel.find({_id:subCategoryId,isCategory:false});
+             return category
+        } catch (error) {
+            throw new Error(error)
+        }
+        
+    }
+
     getAllSubCategoryByCategoryId=async(categoryId:String)=>{
         const category=await CategoryModel.find({_id:categoryId});
         if(category.length==0){

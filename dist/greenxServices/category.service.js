@@ -27,6 +27,24 @@ class CategoryService {
                 throw new Error("Error: " + error);
             }
         };
+        this.getCategoryById = async (categoryId) => {
+            try {
+                const category = await CategoryModel.find({ _id: categoryId, isCategory: true });
+                return category;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        };
+        this.getSubCategoryById = async (subCategoryId) => {
+            try {
+                const category = await CategoryModel.find({ _id: subCategoryId, isCategory: false });
+                return category;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        };
         this.getAllSubCategoryByCategoryId = async (categoryId) => {
             const category = await CategoryModel.find({ _id: categoryId });
             if (category.length == 0) {
