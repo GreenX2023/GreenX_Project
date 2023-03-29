@@ -2,6 +2,20 @@ import { Field, ObjectType,InputType } from "type-graphql";
 // @ts-ignore
 import GraphQLUpload from 'graphql-upload/public/GraphQLUpload.js';
 
+@ObjectType()
+class feedback{
+    @Field(() => String,{nullable: true})
+    user: string;
+  
+    @Field(() => String,{nullable: true})
+    feedbackId: string;
+
+    @Field(() => Number,{nullable: true})
+    rating: number;
+
+    @Field(() => String,{nullable: true})
+    comment: string;
+}
 
 @ObjectType()
 export class Product{
@@ -28,6 +42,9 @@ export class Product{
 
     @Field(()=>String,{nullable: true})
     categoryID:string
+
+    @Field(()=>[feedback],{nullable: true})
+    feedbacks:[feedback]
 }
 
 @InputType()

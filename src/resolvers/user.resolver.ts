@@ -1,4 +1,4 @@
-import User from "../schema/user.schema";
+import {User} from "../schema/user.schema";
 import { CreateUserInput} from "../schema/user.schema";
 import { Query, Resolver,Mutation,Arg } from "type-graphql";
 import { Product } from "../schema/product.schema";

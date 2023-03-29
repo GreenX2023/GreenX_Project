@@ -48,6 +48,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.6.5",
     "mongoose-validator": "^2.1.0",
+    "natural": "^6.2.0",
     "prompt-sync": "^4.2.0",
     "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",

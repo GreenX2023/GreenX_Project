@@ -11,6 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateProductInput = exports.Product = void 0;
 const type_graphql_1 = require("type-graphql");
+let feedback = class feedback {
+};
+__decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], feedback.prototype, "user", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], feedback.prototype, "feedbackId", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => Number, { nullable: true }),
+    __metadata("design:type", Number)
+], feedback.prototype, "rating", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], feedback.prototype, "comment", void 0);
+feedback = __decorate([
+    (0, type_graphql_1.ObjectType)()
+], feedback);
 let Product = class Product {
 };
 __decorate([
@@ -45,6 +66,10 @@ __decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Product.prototype, "categoryID", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => [feedback], { nullable: true }),
+    __metadata("design:type", Array)
+], Product.prototype, "feedbacks", void 0);
 Product = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], Product);

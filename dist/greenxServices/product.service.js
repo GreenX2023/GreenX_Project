@@ -4,6 +4,12 @@ const ProductModel = require('../models/Product.model');
 const UserModel = require('../models/User.model');
 const CategoryModel = require('../models/Category.model');
 const { uploadImage } = require("../helper/cloudinary.upload");
+const { classifyComments } = require('../helper/sentiment.analysis');
+const { ObjectId } = require('mongodb');
+const crypto = require('crypto');
+function generateId() {
+    return crypto.randomBytes(12).toString('hex');
+}
 class ProductService {
     constructor() {
         this.createProduct = async (input) => {
@@ -65,6 +71,40 @@ class ProductService {
                     new: true
                 });
                 return addNewImage;
+            }
+            catch (error) {
+                throw new Error(error);
+            }
+        };
+        this.addFeedBack = async (userId, comment, productId) => {
+            try {
+                const user = await UserModel.findOne({
+                    _id: userId
+                });
+                if (!user) {
+                    throw new Error('User ID is Invalid');
+                }
+                const rating = classifyComments(comment);
+                console.log(rating);
+                console.log(new ObjectId(`${productId}`));
+                const feedback = {
+                    user: userId,
+                    rating: rating,
+                    comment: comment,
+                    feedbackId: generateId()
+                };
+                const addFeedBack = await ProductModel.findOneAndUpdate({
+                    _id: productId
+                }, {
+                    "$push": { "feedbacks": feedback }
+                }, {
+                    new: true
+                });
+                console.log(addFeedBack);
+                if (!addFeedBack) {
+                    throw new Error("feedBack Not Added");
+                }
+                return addFeedBack;
             }
             catch (error) {
                 throw new Error(error);

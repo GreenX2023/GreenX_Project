@@ -63,4 +63,13 @@ export default class ProductResolver{
     ){
         return product.deleteProduct(productId)
     }
+
+    @Mutation(()=>Product)
+    addFeedback(
+        @Arg('userId',{ nullable: true }) userId: string,
+        @Arg('comment',{ nullable: true }) comment: string,
+        @Arg('productId',{ nullable: true }) productId: string
+    ){
+        return product.addFeedBack(userId,comment,productId)
+    }
 }

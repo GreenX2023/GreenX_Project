@@ -2,7 +2,13 @@ const ProductModel = require('../models/Product.model')
 const UserModel = require('../models/User.model')
 const CategoryModel = require('../models/Category.model')
 const { uploadImage } = require("../helper/cloudinary.upload");
+const {classifyComments}=require('../helper/sentiment.analysis')
+const {ObjectId} = require('mongodb');
+const crypto = require('crypto');
 
+function generateId() {
+    return crypto.randomBytes(12).toString('hex');
+}
 
 
 export default class ProductService{
@@ -73,6 +79,41 @@ addImageInProduct=async(productID:String,image:String)=>{
       new: true
     });
     return addNewImage
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+addFeedBack=async(userId:String,comment:String,productId:String)=>{
+  try {
+    
+  const user=await UserModel.findOne({
+    _id:userId
+  })
+  if(!user)
+  {
+    throw new Error('User ID is Invalid')
+  }
+  const rating=classifyComments(comment);
+
+  const feedback={
+    user: userId,
+    rating:rating,
+    comment:comment,
+    feedbackId:generateId()
+  }
+
+  const addFeedBack=await ProductModel.findOneAndUpdate({
+    _id:productId
+  },{
+     "$push": { "feedbacks": feedback } 
+  },{
+    new: true 
+  })
+  if(!addFeedBack){
+    throw new Error("feedBack Not Added")
+  }
+  return addFeedBack
   } catch (error) {
     throw new Error(error)
   }

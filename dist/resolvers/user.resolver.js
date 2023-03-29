@@ -15,7 +15,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const user_schema_1 = __importDefault(require("../schema/user.schema"));
+const user_schema_1 = require("../schema/user.schema");
 const user_schema_2 = require("../schema/user.schema");
 const type_graphql_1 = require("type-graphql");
 const product_schema_1 = require("../schema/product.schema");
@@ -59,7 +59,7 @@ let UserResolver = class UserResolver {
     }
 };
 __decorate([
-    (0, type_graphql_1.Mutation)(() => user_schema_1.default),
+    (0, type_graphql_1.Mutation)(() => user_schema_1.User),
     (0, type_graphql_2.UseMiddleware)(authmiddleware_1.authMiddleware),
     __param(0, (0, type_graphql_1.Arg)('input')),
     __metadata("design:type", Function),
@@ -67,7 +67,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "createUser", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => user_schema_1.default),
+    (0, type_graphql_1.Mutation)(() => user_schema_1.User),
     __param(0, (0, type_graphql_1.Arg)('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_schema_2.CreateUserInput]),
@@ -88,7 +88,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "logout", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => user_schema_1.default),
+    (0, type_graphql_1.Mutation)(() => user_schema_1.User),
     __param(0, (0, type_graphql_1.Arg)('userId')),
     __param(1, (0, type_graphql_1.Arg)('productId')),
     __metadata("design:type", Function),
@@ -97,7 +97,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "updateBookmarksAdd", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => user_schema_1.default),
+    (0, type_graphql_1.Mutation)(() => user_schema_1.User),
     __param(0, (0, type_graphql_1.Arg)('userId')),
     __param(1, (0, type_graphql_1.Arg)('productId')),
     __metadata("design:type", Function),
@@ -106,13 +106,13 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "updateBookmarksRemove", null);
 __decorate([
-    (0, type_graphql_1.Query)(() => [user_schema_1.default]),
+    (0, type_graphql_1.Query)(() => [user_schema_1.User]),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "getAllUsers", null);
 __decorate([
-    (0, type_graphql_1.Query)(() => user_schema_1.default),
+    (0, type_graphql_1.Query)(() => user_schema_1.User),
     __param(0, (0, type_graphql_1.Arg)('userId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

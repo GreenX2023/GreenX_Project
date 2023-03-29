@@ -59,10 +59,33 @@ const ProductSchema= new mongoose.Schema({
         type:String,
         required: [true, 'Seller is required.']
     }
-   
+   , 
+   feedbacks: [{
+    user: {
+        type:String,
+    },
+    feedbackId: {
+        type: String
+    },
+    rating: {
+        type: Number,
+        min: 1,
+        max: 5
+    },
+    comment: {
+        type: String
+    }
+}]
 }
 ,
 { timestamps: true }
 );
+
+ProductSchema.pre('save', function(next:any) {
+  if (!ProductSchema.feedbackId) {
+    ProductSchema.feedbackId = `${ProductSchema._id}-${Date.now()}`;
+  }
+  next();
+});
 
 module.exports= new mongoose.model('Product',ProductSchema);

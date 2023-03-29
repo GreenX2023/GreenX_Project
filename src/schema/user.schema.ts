@@ -12,7 +12,7 @@ class Location {
 }
 
 @ObjectType()
-export default class User{
+export class User{
     @Field(() => String,{nullable: true})
     _id: string
 
