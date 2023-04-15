@@ -3,7 +3,6 @@ const UserModel = require('../models/User.model')
 const CategoryModel = require('../models/Category.model')
 const { uploadImage } = require("../helper/cloudinary.upload");
 const {classifyComments}=require('../helper/sentiment.analysis')
-const {ObjectId} = require('mongodb');
 const crypto = require('crypto');
 
 function generateId() {

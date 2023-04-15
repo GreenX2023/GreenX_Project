@@ -5,7 +5,6 @@ const UserModel = require('../models/User.model');
 const CategoryModel = require('../models/Category.model');
 const { uploadImage } = require("../helper/cloudinary.upload");
 const { classifyComments } = require('../helper/sentiment.analysis');
-const { ObjectId } = require('mongodb');
 const crypto = require('crypto');
 function generateId() {
     return crypto.randomBytes(12).toString('hex');
@@ -85,8 +84,6 @@ class ProductService {
                     throw new Error('User ID is Invalid');
                 }
                 const rating = classifyComments(comment);
-                console.log(rating);
-                console.log(new ObjectId(`${productId}`));
                 const feedback = {
                     user: userId,
                     rating: rating,
@@ -100,7 +97,6 @@ class ProductService {
                 }, {
                     new: true
                 });
-                console.log(addFeedBack);
                 if (!addFeedBack) {
                     throw new Error("feedBack Not Added");
                 }
