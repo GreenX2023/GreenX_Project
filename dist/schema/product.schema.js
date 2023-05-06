@@ -67,6 +67,14 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "categoryID", void 0);
 __decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], Product.prototype, "pincode", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], Product.prototype, "city_name", void 0);
+__decorate([
     (0, type_graphql_1.Field)(() => [feedback], { nullable: true }),
     __metadata("design:type", Array)
 ], Product.prototype, "feedbacks", void 0);
@@ -92,6 +100,10 @@ __decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], CreateProductInput.prototype, "quantity", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], CreateProductInput.prototype, "pincode", void 0);
 __decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)

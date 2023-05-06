@@ -6,14 +6,34 @@ const CategoryModel = require('../models/Category.model');
 const { uploadImage } = require("../helper/cloudinary.upload");
 const { classifyComments } = require('../helper/sentiment.analysis');
 const crypto = require('crypto');
+const axios = require('axios');
 function generateId() {
     return crypto.randomBytes(12).toString('hex');
 }
 class ProductService {
     constructor() {
         this.createProduct = async (input) => {
+            const { name, description, price, quantity, sellerID, categoryID, images, pincode } = input;
             try {
-                const { name, description, price, quantity, sellerID, categoryID, images } = input;
+                const options = {
+                    method: 'POST',
+                    url: 'https://get-details-by-pin-code-india.p.rapidapi.com/detailsbypincode',
+                    headers: {
+                        'content-type': 'application/json',
+                        'X-RapidAPI-Key': '740740c7a1msh3215fd5810beaf2p141479jsne648aa588511',
+                        'X-RapidAPI-Host': 'get-details-by-pin-code-india.p.rapidapi.com'
+                    },
+                    data: { pincode: pincode }
+                };
+                var city_name = '';
+                try {
+                    const response = await axios.request(options);
+                    city_name = response.data.details[0].city_name;
+                    console.log(response.data.details[0]);
+                }
+                catch (error) {
+                    throw new Error("Invalid pincode");
+                }
                 const uploadimages = await Promise.all(images.map(async (image) => {
                     try {
                         const photoUrl = image && (await uploadImage(image));
@@ -41,7 +61,9 @@ class ProductService {
                     quantity,
                     images: uploadimages,
                     categoryID,
-                    sellerID
+                    sellerID,
+                    pincode,
+                    city_name
                 });
                 await product.save();
                 let sellerId = product.sellerID;

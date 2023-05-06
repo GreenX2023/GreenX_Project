@@ -53,6 +53,13 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Seller is required.']
     },
+    pincode: {
+        type: String,
+        required: [true, 'Pincode is required.']
+    },
+    city_name: {
+        type: String
+    },
     feedbacks: [{
             user: {
                 type: String,

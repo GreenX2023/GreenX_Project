@@ -43,6 +43,12 @@ export class Product{
     @Field(()=>String,{nullable: true})
     categoryID:string
 
+    @Field(()=>String,{nullable: true})
+    pincode:string
+
+    @Field(()=>String,{nullable: true})
+    city_name:string
+
     @Field(()=>[feedback],{nullable: true})
     feedbacks:[feedback]
 }
@@ -61,6 +67,8 @@ export class CreateProductInput{
     @Field(()=>String,{nullable: true})
     quantity: string;
 
+    @Field(()=>String,{nullable: true})
+    pincode:string
 
     @Field(()=>String,{nullable: true})
     sellerID: string;
