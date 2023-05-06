@@ -9,22 +9,22 @@ let product= new ProductService()
 export default class ProductResolver{
 
 
-    @Query(()=>[Product])
+    @Query(()=>[Product],{nullable: true})
     getAllProducts(){
         return product.getAllProducts()
     }
 
-    @Query(()=>Product)
+    @Query(()=>Product,{nullable: true})
     getProductById(@Arg('productID') productID: string){
         return product.getProductById(productID)
     }
 
-    @Query(()=>Product)
+    @Query(()=>Product,{nullable: true})
     getProductByName(@Arg('productName') productName: string){
         return product.getProductByName(productName)
     }
 
-    @Mutation(()=> Product)
+    @Mutation(()=> Product,{nullable: true})
     createProduct(@Arg('input') input: CreateProductInput){
         return product.createProduct(input)
     }
