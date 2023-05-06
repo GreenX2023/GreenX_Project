@@ -50,27 +50,27 @@ let ProductResolver = class ProductResolver {
     }
 };
 __decorate([
-    (0, type_graphql_1.Query)(() => [product_schema_1.Product]),
+    (0, type_graphql_1.Query)(() => [product_schema_1.Product], { nullable: true }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ProductResolver.prototype, "getAllProducts", null);
 __decorate([
-    (0, type_graphql_1.Query)(() => product_schema_1.Product),
+    (0, type_graphql_1.Query)(() => product_schema_1.Product, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('productID')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ProductResolver.prototype, "getProductById", null);
 __decorate([
-    (0, type_graphql_1.Query)(() => product_schema_1.Product),
+    (0, type_graphql_1.Query)(() => product_schema_1.Product, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('productName')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ProductResolver.prototype, "getProductByName", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => product_schema_1.Product),
+    (0, type_graphql_1.Mutation)(() => product_schema_1.Product, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('input')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [product_schema_1.CreateProductInput]),
