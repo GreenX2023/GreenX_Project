@@ -16,9 +16,7 @@ export default class UserService{
         }
        
     }
-
     getNearByProductByUserLocation=async(longitude:number,latitude:number)=>{
-
         try {
            
             let productList:any=[]
@@ -29,7 +27,7 @@ export default class UserService{
                       type: 'Point',
                       coordinates: [latitude, longitude],
                     },
-                    $maxDistance: 30000, // 30km in meters
+                    $maxDistance: 10000, // 30km in meters           
                   },
                 },
               }).hint({ location: '2dsphere' }).populate('products');    
@@ -44,6 +42,7 @@ export default class UserService{
         }
        
     }
+
 
     register=async(input:CreateUserInput)=>{
         try {
@@ -62,7 +61,6 @@ export default class UserService{
         } catch (error) {
             throw new Error(error)
         }   
-       
     }
     login=async(contactnum:string,password:string)=>{
 

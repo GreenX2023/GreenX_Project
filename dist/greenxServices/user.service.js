@@ -26,7 +26,7 @@ class UserService {
                                 type: 'Point',
                                 coordinates: [latitude, longitude],
                             },
-                            $maxDistance: 30000, // 30km in meters
+                            $maxDistance: 10000, // 30km in meters           
                         },
                     },
                 }).hint({ location: '2dsphere' }).populate('products');
