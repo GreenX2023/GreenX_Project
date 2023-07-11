@@ -16,20 +16,18 @@ class ProductService {
             const { name, description, price, quantity, sellerID, categoryID, images, pincode } = input;
             try {
                 const options = {
-                    method: 'POST',
-                    url: 'https://get-details-by-pin-code-india.p.rapidapi.com/detailsbypincode',
+                    method: 'GET',
+                    url: `https://api.postalpincode.in/pincode/${pincode}`,
                     headers: {
                         'content-type': 'application/json',
-                        'X-RapidAPI-Key': '740740c7a1msh3215fd5810beaf2p141479jsne648aa588511',
-                        'X-RapidAPI-Host': 'get-details-by-pin-code-india.p.rapidapi.com'
-                    },
-                    data: { pincode: pincode }
+                    }
                 };
                 var city_name = '';
                 try {
                     const response = await axios.request(options);
-                    city_name = response.data.details[0].city_name;
-                    console.log(response.data.details[0]);
+                    console.log(response);
+                    city_name = response.data[0].PostOffice[0].Block;
+                    console.log(city_name);
                 }
                 catch (error) {
                     throw new Error("Invalid pincode");
