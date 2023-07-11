@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const dbLink = process.env.LOCAL_MONGO_URL;
-// const dbLink:string = process.env.ATLAS_MONGO_URL!
+// const dbLink:string = process.env.LOCAL_MONGO_URL!
+const dbLink = process.env.ATLAS_MONGO_URL;
 // mongodb+srv://ozzy:ozzy@ozzy-cluster.llaahyp.mongodb.net/green?retryWrites=true&w=majority
 exports.mongoLocal = () => {
     console.log();
