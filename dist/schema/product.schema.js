@@ -63,6 +63,10 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "sellerID", void 0);
 __decorate([
+    (0, type_graphql_1.Field)(() => Number, { nullable: true }),
+    __metadata("design:type", Number)
+], Product.prototype, "rating", void 0);
+__decorate([
     (0, type_graphql_1.Field)(() => String, { nullable: true }),
     __metadata("design:type", String)
 ], Product.prototype, "categoryID", void 0);

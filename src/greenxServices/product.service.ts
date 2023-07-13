@@ -88,6 +88,10 @@ try {
     }
 }
 
+getProductsByFilter=async(categoryID:String,rating:number)=>{
+  console.log(categoryID+""+rating)
+}
+
 addImageInProduct=async(productID:String,image:String)=>{
   try {
     const product=await ProductModel.findOne({_id:productID})
@@ -133,6 +137,22 @@ addFeedBack=async(userId:String,comment:String,productId:String)=>{
   if(!addFeedBack){
     throw new Error("feedBack Not Added")
   }
+  const product=await ProductModel.findOne({
+    _id:productId
+  })
+  let main_rating=0;
+  let ratings=0;
+  for(let i=0;i<product.feedbacks.length;i++){
+    ratings+=product.feedbacks[i].rating
+  }
+  main_rating=ratings/(product.feedbacks.length+1)
+
+await ProductModel.findOneAndUpdate({
+    _id:productId
+  },{
+     rating:main_rating
+  })
+ 
   return addFeedBack
   } catch (error) {
     throw new Error(error)

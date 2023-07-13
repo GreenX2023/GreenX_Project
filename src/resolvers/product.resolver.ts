@@ -14,6 +14,15 @@ export default class ProductResolver{
         return product.getAllProducts()
     }
 
+    
+    @Query(()=>[Product],{nullable: true})
+    getProductsByFilter(@Arg('categoryID') categorID: string,
+    @Arg('rating') rating: number
+    ){
+        return product.getProductsByFilter(categorID,rating)
+    }
+
+
     @Query(()=>Product,{nullable: true})
     getProductById(@Arg('productID') productID: string){
         return product.getProductById(productID)

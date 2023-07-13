@@ -59,6 +59,10 @@ const ProductSchema= new mongoose.Schema({
         type:String,
         required: [true, 'Seller is required.']
     },
+    rating:{
+      type:Number,
+      default:0
+    },
     pincode:{
       type:String,
       required: [true, 'Pincode is required.']

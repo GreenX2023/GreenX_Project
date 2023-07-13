@@ -40,6 +40,9 @@ export class Product{
     @Field(()=>String,{nullable: true})
     sellerID:string
 
+    @Field(()=>Number,{nullable: true})
+    rating:number
+
     @Field(()=>String,{nullable: true})
     categoryID:string
 
