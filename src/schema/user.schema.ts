@@ -12,6 +12,17 @@ class Location {
 }
 
 @ObjectType()
+export class loginUser{
+    @Field(() => String,{nullable: true})
+    token: string
+
+    @Field(() => String,{nullable: true})
+    id: string
+
+
+}
+
+@ObjectType()
 export class User{
     @Field(() => String,{nullable: true})
     _id: string

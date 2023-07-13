@@ -1,5 +1,5 @@
 
-import {User} from "../schema/user.schema";
+import {User, loginUser} from "../schema/user.schema";
 import { CreateUserInput} from "../schema/user.schema";
 import { Query, Resolver,Mutation,Arg } from "type-graphql";
 import { Product } from "../schema/product.schema";
@@ -24,7 +24,7 @@ export default class UserResolver{
         return user.register(input) 
     }
 
-    @Mutation(()=>String)
+    @Mutation(()=>loginUser)
       login(
         @Arg("contactnum") contactnum:string,
         @Arg("password") password:string )

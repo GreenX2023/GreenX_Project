@@ -79,7 +79,10 @@ export default class UserService{
                   });
         
                   await UserModel.findOneAndUpdate({token},{contactnum})
-                  return token
+                  return {
+                    token,
+                    id:existingUser
+                  }
         } catch (error) {
             throw new Error(error)
         }
