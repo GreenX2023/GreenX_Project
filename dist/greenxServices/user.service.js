@@ -72,7 +72,10 @@ class UserService {
                     expiresIn: "1d",
                 });
                 await UserModel.findOneAndUpdate({ token }, { contactnum });
-                return token;
+                return {
+                    token,
+                    id: existingUser
+                };
             }
             catch (error) {
                 throw new Error(error);

@@ -74,7 +74,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "register", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => String),
+    (0, type_graphql_1.Mutation)(() => user_schema_1.loginUser),
     __param(0, (0, type_graphql_1.Arg)("contactnum")),
     __param(1, (0, type_graphql_1.Arg)("password")),
     __metadata("design:type", Function),
