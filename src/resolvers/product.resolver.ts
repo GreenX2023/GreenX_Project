@@ -1,4 +1,4 @@
-import { Product,CreateProductInput } from "../schema/product.schema";
+import { Product,CreateProductInput, filterProductInput } from "../schema/product.schema";
 
 import { Query, Resolver,Mutation,Arg } from "type-graphql";
 import ProductService from "../greenxServices/product.service";
@@ -16,10 +16,8 @@ export default class ProductResolver{
 
     
     @Query(()=>[Product],{nullable: true})
-    getProductsByFilter(@Arg('categoryID') categorID: string,
-    @Arg('rating') rating: number
-    ){
-        return product.getProductsByFilter(categorID,rating)
+    getProductsByFilter(@Arg('input') input: filterProductInput){
+        return product.getProductsByFilter(input)
     }
 
 

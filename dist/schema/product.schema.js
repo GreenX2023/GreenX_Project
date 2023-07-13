@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateProductInput = exports.Product = void 0;
+exports.CreateProductInput = exports.filterProductInput = exports.Product = void 0;
 const type_graphql_1 = require("type-graphql");
 let feedback = class feedback {
 };
@@ -86,6 +86,32 @@ Product = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], Product);
 exports.Product = Product;
+let filterProductInput = class filterProductInput {
+};
+__decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], filterProductInput.prototype, "categoryID", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => [Number], { nullable: true }),
+    __metadata("design:type", Array)
+], filterProductInput.prototype, "rating", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => String, { nullable: true }),
+    __metadata("design:type", String)
+], filterProductInput.prototype, "pincode", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => Number, { nullable: true }),
+    __metadata("design:type", Number)
+], filterProductInput.prototype, "min", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => Number, { nullable: true }),
+    __metadata("design:type", Number)
+], filterProductInput.prototype, "max", void 0);
+filterProductInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], filterProductInput);
+exports.filterProductInput = filterProductInput;
 let CreateProductInput = class CreateProductInput {
 };
 __decorate([

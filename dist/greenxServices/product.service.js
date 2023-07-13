@@ -79,8 +79,16 @@ class ProductService {
                 throw new Error(error);
             }
         };
-        this.getProductsByFilter = async (categoryID, rating) => {
-            console.log(categoryID + "" + rating);
+        this.getProductsByFilter = async (input) => {
+            const { categoryID, rating, pincode, min, max } = input;
+            console.log({ categoryID, rating, pincode, min, max });
+            const products = await ProductModel.find({
+                categoryID: categoryID,
+                rating: rating,
+                pincode: pincode,
+                price: { $gte: min, $lte: max }
+            });
+            return products;
         };
         this.addImageInProduct = async (productID, image) => {
             try {

@@ -55,6 +55,23 @@ export class Product{
     @Field(()=>[feedback],{nullable: true})
     feedbacks:[feedback]
 }
+@InputType()
+export class filterProductInput{
+    @Field(()=>String,{nullable: true})
+    categoryID: string;
+
+    @Field(()=>[Number],{nullable: true})
+    rating: number[];
+
+    @Field(()=>String,{nullable: true})
+    pincode: string;
+
+    @Field(()=>Number,{nullable: true})
+    min: number;
+
+    @Field(()=>Number,{nullable: true})
+    max: number;
+}
 
 @InputType()
 export class CreateProductInput{

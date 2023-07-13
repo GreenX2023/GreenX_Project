@@ -88,8 +88,16 @@ try {
     }
 }
 
-getProductsByFilter=async(categoryID:String,rating:number)=>{
-  console.log(categoryID+""+rating)
+getProductsByFilter=async(input:any)=>{
+  const {categoryID,rating,pincode,min,max}=input;
+  console.log({categoryID,rating,pincode,min,max})
+  const products= await ProductModel.find({
+    categoryID:categoryID,
+    rating:rating,
+    pincode:pincode,
+    price: { $gte: min, $lte: max }
+  })
+  return  products
 }
 
 addImageInProduct=async(productID:String,image:String)=>{
