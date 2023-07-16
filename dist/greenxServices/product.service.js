@@ -79,6 +79,12 @@ class ProductService {
                 throw new Error(error);
             }
         };
+        this.getProductsByCategoryId = async (categoryId) => {
+            const products = await ProductModel.find({
+                categoryID: categoryId,
+            });
+            return products;
+        };
         this.getProductsByFilter = async (input) => {
             const { categoryID, rating, pincode, min, max } = input;
             console.log({ categoryID, rating, pincode, min, max });

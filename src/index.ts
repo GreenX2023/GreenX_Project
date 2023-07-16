@@ -3,12 +3,12 @@ import express,{Express} from 'express'
 import { buildSchema} from 'type-graphql'
 import {graphqlHTTP} from 'express-graphql'
 import {resolvers} from './resolvers/allResolvers'
+
 const { mongoLocal }= require('./db/mongo')
 const bodyParser = require('body-parser');
 const cors=require('cors')
 
 const app:Express = express()
-
 const PORT = process.env.PORT || 3000
 
 app.use(bodyParser.json());

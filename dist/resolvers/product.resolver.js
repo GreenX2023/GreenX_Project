@@ -23,6 +23,9 @@ let ProductResolver = class ProductResolver {
     getAllProducts() {
         return product.getAllProducts();
     }
+    getProductsByCategoryId(categoryID) {
+        return product.getProductsByCategoryId(categoryID);
+    }
     getProductsByFilter(input) {
         return product.getProductsByFilter(input);
     }
@@ -58,6 +61,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ProductResolver.prototype, "getAllProducts", null);
+__decorate([
+    (0, type_graphql_1.Query)(() => [product_schema_1.Product], { nullable: true }),
+    __param(0, (0, type_graphql_1.Arg)('categoryID')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ProductResolver.prototype, "getProductsByCategoryId", null);
 __decorate([
     (0, type_graphql_1.Query)(() => [product_schema_1.Product], { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('input')),

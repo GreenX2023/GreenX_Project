@@ -88,6 +88,13 @@ try {
     }
 }
 
+getProductsByCategoryId=async(categoryId:String)=>{
+  const products= await ProductModel.find({
+    categoryID:categoryId,
+  })
+  return  products
+}
+
 getProductsByFilter=async(input:any)=>{
   const {categoryID,rating,pincode,min,max}=input;
   console.log({categoryID,rating,pincode,min,max})

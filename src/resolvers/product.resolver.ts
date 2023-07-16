@@ -14,6 +14,11 @@ export default class ProductResolver{
         return product.getAllProducts()
     }
 
+    @Query(()=>[Product],{nullable: true})
+    getProductsByCategoryId(@Arg('categoryID') categoryID: string){
+        return product.getProductsByCategoryId(categoryID)
+    }
+
     
     @Query(()=>[Product],{nullable: true})
     getProductsByFilter(@Arg('input') input: filterProductInput){
