@@ -74,7 +74,7 @@ class UserService {
                 await UserModel.findOneAndUpdate({ token }, { contactnum });
                 return {
                     token,
-                    id: existingUser
+                    id: existingUser.id
                 };
             }
             catch (error) {
