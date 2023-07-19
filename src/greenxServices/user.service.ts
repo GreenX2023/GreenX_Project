@@ -94,7 +94,9 @@ export default class UserService{
             let doc = await UserModel.findOneAndUpdate({_id:userId},{ "$push": { "bookmarks": bookmarkproduct } }, {
                 new: true
               });
+            console.log(doc)
             return doc
+            console.log(doc)
         } catch (error) {
             throw new Error(error)
         }
@@ -132,7 +134,7 @@ export default class UserService{
     }
     getUserById = async(userId: any)=>{
         try {
-            const result=await  UserModel.findOne({_id:userId});
+            const result=await  UserModel.findOne({_id:userId}).populate("bookmarks");
             return result;
         } catch (error) {
             throw new Error(error)

@@ -88,7 +88,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "logout", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => user_schema_1.User),
+    (0, type_graphql_1.Mutation)(() => user_schema_1.User, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('userId')),
     __param(1, (0, type_graphql_1.Arg)('productId')),
     __metadata("design:type", Function),
@@ -97,7 +97,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "updateBookmarksAdd", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => user_schema_1.User),
+    (0, type_graphql_1.Mutation)(() => user_schema_1.User, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('userId')),
     __param(1, (0, type_graphql_1.Arg)('productId')),
     __metadata("design:type", Function),

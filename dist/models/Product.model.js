@@ -87,5 +87,6 @@ ProductSchema.pre('save', function (next) {
     }
     next();
 });
+ProductSchema.index({ name: "text" });
 module.exports = new mongoose.model('Product', ProductSchema);
 //# sourceMappingURL=Product.model.js.map

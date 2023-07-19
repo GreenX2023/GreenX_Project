@@ -98,5 +98,5 @@ ProductSchema.pre('save', function(next:any) {
   }
   next();
 });
-
+ProductSchema.index({ name: "text" });
 module.exports= new mongoose.model('Product',ProductSchema);

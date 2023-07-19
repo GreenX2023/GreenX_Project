@@ -87,7 +87,9 @@ class UserService {
                 let doc = await UserModel.findOneAndUpdate({ _id: userId }, { "$push": { "bookmarks": bookmarkproduct } }, {
                     new: true
                 });
+                console.log(doc);
                 return doc;
+                console.log(doc);
             }
             catch (error) {
                 throw new Error(error);
@@ -122,7 +124,7 @@ class UserService {
         };
         this.getUserById = async (userId) => {
             try {
-                const result = await UserModel.findOne({ _id: userId });
+                const result = await UserModel.findOne({ _id: userId }).populate("bookmarks");
                 return result;
             }
             catch (error) {

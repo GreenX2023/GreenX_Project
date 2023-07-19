@@ -198,6 +198,20 @@ class ProductService {
                 throw new Error('Error in getting product By Id ' + error);
             }
         };
+        this.getProductByNameAndPincode = async (productName, pincode) => {
+            try {
+                const regexPattern = new RegExp(productName, 'i');
+                const result = await ProductModel.find({
+                    name: { $regex: regexPattern },
+                    pincode: pincode,
+                });
+                console.log(result);
+                return result;
+            }
+            catch (error) {
+                throw new Error('Error in getting product By Name ' + error);
+            }
+        };
         this.getProductByName = async (productName) => {
             try {
                 if (productName.length == 0) {

@@ -36,6 +36,13 @@ export default class ProductResolver{
         return product.getProductByName(productName)
     }
 
+    @Query(()=>[Product],{nullable: true})
+    getProductByNameAndLocation(@Arg('productName') productName: string,
+    @Arg('pincode') pincode: string
+    ){
+        return product.getProductByNameAndPincode(productName,pincode)
+    }
+
     @Mutation(()=> Product,{nullable: true})
     createProduct(@Arg('input') input: CreateProductInput){
         return product.createProduct(input)
@@ -84,4 +91,7 @@ export default class ProductResolver{
     ){
         return product.addFeedBack(userId,comment,productId)
     }
+
+
+
 }

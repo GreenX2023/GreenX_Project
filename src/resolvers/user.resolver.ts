@@ -37,7 +37,7 @@ export default class UserResolver{
         return true
     }
 
-    @Mutation(()=> User)
+    @Mutation(()=> User,{nullable: true})
     updateBookmarksAdd(
         @Arg('userId') userId: String ,
         @Arg('productId') productId: String
@@ -45,7 +45,7 @@ export default class UserResolver{
         return user.updateBookmarksAdd(userId,productId)
     }
 
-    @Mutation(()=> User)
+    @Mutation(()=> User,{nullable: true})
     updateBookmarksRemove(
         @Arg('userId') userId: String ,
         @Arg('productId') productId: String

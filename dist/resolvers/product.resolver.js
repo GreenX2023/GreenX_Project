@@ -35,6 +35,9 @@ let ProductResolver = class ProductResolver {
     getProductByName(productName) {
         return product.getProductByName(productName);
     }
+    getProductByNameAndLocation(productName, pincode) {
+        return product.getProductByNameAndPincode(productName, pincode);
+    }
     createProduct(input) {
         return product.createProduct(input);
     }
@@ -89,6 +92,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ProductResolver.prototype, "getProductByName", null);
+__decorate([
+    (0, type_graphql_1.Query)(() => [product_schema_1.Product], { nullable: true }),
+    __param(0, (0, type_graphql_1.Arg)('productName')),
+    __param(1, (0, type_graphql_1.Arg)('pincode')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], ProductResolver.prototype, "getProductByNameAndLocation", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => product_schema_1.Product, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('input')),
