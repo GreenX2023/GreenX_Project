@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserInput = exports.User = exports.loginUser = void 0;
+exports.CreateUserInput = exports.UserUpdateInput = exports.User = exports.loginUser = void 0;
 const type_graphql_1 = require("type-graphql");
 const product_schema_1 = require("./product.schema");
 let Location = class Location {
@@ -89,6 +89,40 @@ User = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], User);
 exports.User = User;
+let UserUpdateInput = class UserUpdateInput {
+};
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UserUpdateInput.prototype, "role", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UserUpdateInput.prototype, "name", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UserUpdateInput.prototype, "email", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UserUpdateInput.prototype, "password", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UserUpdateInput.prototype, "contactnum", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UserUpdateInput.prototype, "bio", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], UserUpdateInput.prototype, "address", void 0);
+UserUpdateInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], UserUpdateInput);
+exports.UserUpdateInput = UserUpdateInput;
 let LocationInput = class LocationInput {
 };
 __decorate([

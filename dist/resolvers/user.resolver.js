@@ -22,6 +22,7 @@ const product_schema_1 = require("../schema/product.schema");
 const type_graphql_2 = require("type-graphql");
 const user_service_1 = __importDefault(require("../greenxServices/user.service"));
 const authmiddleware_1 = require("../middleware/authmiddleware");
+const UserModel = require('../models/User.model');
 let user = new user_service_1.default();
 let UserResolver = class UserResolver {
     createUser(input) {
@@ -38,6 +39,36 @@ let UserResolver = class UserResolver {
     }
     updateBookmarksAdd(userId, productId) {
         return user.updateBookmarksAdd(userId, productId);
+    }
+    async updateUser(userId, data) {
+        try {
+            const user = await UserModel.findById(userId);
+            if (!user) {
+                throw new Error("User not found");
+            }
+            // Update the user properties with the data from the input
+            if (data.role)
+                user.role = data.role;
+            if (data.name)
+                user.name = data.name;
+            if (data.email)
+                user.email = data.email;
+            if (data.password)
+                user.password = data.password;
+            if (data.contactnum)
+                user.contactnum = data.contactnum;
+            if (data.bio)
+                user.bio = data.bio;
+            if (data.address)
+                user.address = data.address;
+            // Save the updated user
+            const updatedUser = await user.save();
+            return updatedUser;
+        }
+        catch (error) {
+            console.error("Error updating user:", error);
+            return null;
+        }
     }
     updateBookmarksRemove(userId, productId) {
         return user.updateBookmarksRemove(userId, productId);
@@ -96,6 +127,14 @@ __decorate([
         String]),
     __metadata("design:returntype", void 0)
 ], UserResolver.prototype, "updateBookmarksAdd", null);
+__decorate([
+    (0, type_graphql_1.Mutation)(() => user_schema_1.User, { nullable: true }),
+    __param(0, (0, type_graphql_1.Arg)("userId")),
+    __param(1, (0, type_graphql_1.Arg)("data")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, user_schema_1.UserUpdateInput]),
+    __metadata("design:returntype", Promise)
+], UserResolver.prototype, "updateUser", null);
 __decorate([
     (0, type_graphql_1.Mutation)(() => user_schema_1.User, { nullable: true }),
     __param(0, (0, type_graphql_1.Arg)('userId')),
