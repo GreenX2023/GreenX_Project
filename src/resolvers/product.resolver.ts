@@ -1,7 +1,8 @@
-import { Product,CreateProductInput, filterProductInput } from "../schema/product.schema";
+import { Product,CreateProductInput, filterProductInput, ProductUpdateInput } from "../schema/product.schema";
 
 import { Query, Resolver,Mutation,Arg } from "type-graphql";
 import ProductService from "../greenxServices/product.service";
+const ProductModel = require('../models/Product.model')
 
 let product= new ProductService()
 
@@ -63,17 +64,47 @@ export default class ProductResolver{
     ){
         return product.removeImageFromProduct(productID,imageUrl)
     }
+    // @Arg('productId',{ nullable: true }) productId: string,
+    // @Arg('name',{ nullable: true }) name: string,
+    // @Arg('price',{ nullable: true }) price: Number,
+    // @Arg('description',{ nullable: true }) description: string,
+    // @Arg('quantity',{ nullable: true }) quantity: string,
+
+    // productId,name,price,description,quantity
     //get products based on user location if logged in (query) for home page
 
     @Mutation(()=>Product)
-    updateProduct(
-        @Arg('productId',{ nullable: true }) productId: string,
-        @Arg('name',{ nullable: true }) name: string,
-        @Arg('price',{ nullable: true }) price: Number,
-        @Arg('description',{ nullable: true }) description: string,
-        @Arg('quantity',{ nullable: true }) quantity: string,
+   async updateProduct(
+        @Arg("productId") productId: string,
+       @Arg("data") data: ProductUpdateInput
     ){
-        return product.updateProduct(productId,name,price,description,quantity)
+        try {
+            const product = await ProductModel.findById(productId);
+      
+            if (!product) {
+              throw new Error("Product not found");
+            }
+      
+            // Update the product properties with the data from the input
+            if (data.name) product.name = data.name;
+            if (data.price) product.price = data.price;
+            if (data.description) product.description = data.description;
+            if (data.quantity) product.quantity = data.quantity;
+            if (data.images) product.images = data.images;
+            if (data.categoryID) product.categoryID = data.categoryID;
+            if (data.sellerID) product.sellerID = data.sellerID;
+            if (data.rating) product.rating = data.rating;
+            if (data.pincode) product.pincode = data.pincode;
+            if (data.city_name) product.city_name = data.city_name;
+      
+            // Save the updated product
+            const updatedProduct = await product.save();
+      
+            return updatedProduct;
+          } catch (error) {
+            console.error("Error updating product:", error);
+            throw new Error("Error updating product");
+          }
     }
 
     @Mutation(()=>String)

@@ -1,4 +1,4 @@
-import { Field, ObjectType,InputType } from "type-graphql";
+import { Field, ObjectType,InputType, Int } from "type-graphql";
 // @ts-ignore
 import GraphQLUpload from 'graphql-upload/public/GraphQLUpload.js';
 
@@ -15,6 +15,39 @@ class feedback{
 
     @Field(() => String,{nullable: true})
     comment: string;
+}
+
+@InputType()
+export class ProductUpdateInput {
+  @Field({ nullable: true })
+  name?: string;
+
+  @Field(() => Int, { nullable: true })
+  price?: number;
+
+  @Field({ nullable: true })
+  description?: string;
+
+  @Field({ nullable: true })
+  quantity?: string;
+
+  @Field(() => [String], { nullable: true })
+  images?: string[];
+
+  @Field({ nullable: true })
+  categoryID?: string;
+
+  @Field({ nullable: true })
+  sellerID?: string;
+
+  @Field(() => Int, { nullable: true })
+  rating?: number;
+
+  @Field({ nullable: true })
+  pincode?: string;
+
+  @Field({ nullable: true })
+  city_name?: string;
 }
 
 @ObjectType()

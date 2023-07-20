@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateProductInput = exports.filterProductInput = exports.Product = void 0;
+exports.CreateProductInput = exports.filterProductInput = exports.Product = exports.ProductUpdateInput = void 0;
 const type_graphql_1 = require("type-graphql");
 let feedback = class feedback {
 };
@@ -32,6 +32,52 @@ __decorate([
 feedback = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], feedback);
+let ProductUpdateInput = class ProductUpdateInput {
+};
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], ProductUpdateInput.prototype, "name", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => type_graphql_1.Int, { nullable: true }),
+    __metadata("design:type", Number)
+], ProductUpdateInput.prototype, "price", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], ProductUpdateInput.prototype, "description", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], ProductUpdateInput.prototype, "quantity", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => [String], { nullable: true }),
+    __metadata("design:type", Array)
+], ProductUpdateInput.prototype, "images", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], ProductUpdateInput.prototype, "categoryID", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], ProductUpdateInput.prototype, "sellerID", void 0);
+__decorate([
+    (0, type_graphql_1.Field)(() => type_graphql_1.Int, { nullable: true }),
+    __metadata("design:type", Number)
+], ProductUpdateInput.prototype, "rating", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], ProductUpdateInput.prototype, "pincode", void 0);
+__decorate([
+    (0, type_graphql_1.Field)({ nullable: true }),
+    __metadata("design:type", String)
+], ProductUpdateInput.prototype, "city_name", void 0);
+ProductUpdateInput = __decorate([
+    (0, type_graphql_1.InputType)()
+], ProductUpdateInput);
+exports.ProductUpdateInput = ProductUpdateInput;
 let Product = class Product {
 };
 __decorate([

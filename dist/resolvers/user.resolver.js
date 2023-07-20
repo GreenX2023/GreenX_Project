@@ -67,7 +67,7 @@ let UserResolver = class UserResolver {
         }
         catch (error) {
             console.error("Error updating user:", error);
-            return null;
+            throw new Error("Error updating user");
         }
     }
     updateBookmarksRemove(userId, productId) {
