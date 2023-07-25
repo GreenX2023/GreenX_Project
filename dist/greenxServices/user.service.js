@@ -30,6 +30,7 @@ class UserService {
                         },
                     },
                 }).hint({ location: '2dsphere' }).populate('products');
+                console.log(users);
                 for (let i = 0; i < users.length; i++) {
                     productList = productList.concat(users[i].products);
                 }

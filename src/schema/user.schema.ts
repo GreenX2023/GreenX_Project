@@ -56,7 +56,6 @@ export class User{
 
     @Field(()=>Location,{nullable: true})
     location:Location
-
 }
 
 @InputType()
